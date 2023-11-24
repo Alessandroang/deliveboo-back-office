@@ -16,7 +16,7 @@ Mid: #5aaa9d
 .food_container {
   color: #444;
   font-family: Roboto;
-  padding:50px 0;
+  padding:30px 0;
   background: linear-gradient(to bottom right, #67b26f, #4ca2cd);
   height: 100vh;
 }
@@ -38,16 +38,11 @@ Mid: #5aaa9d
   align-items:center ;
 }
 
-.food__img {
-  width: 100%;
-  display: block;
-}
-
 .food__content {
   flex: 1;
   background: white;
   padding: 25px 20px;
-  
+  max-width: calc(100% - 50px);
   display: flex;
   flex-direction: column;
 }
