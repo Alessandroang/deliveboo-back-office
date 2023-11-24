@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\PlateVisibility;
+
 use App\Http\Controllers\Controller;
 use App\Models\Plate;
 use Illuminate\Http\Request;
@@ -61,9 +66,9 @@ class PlateController extends Controller
      * @param  int  $id
      * //@return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Plate $plate)
     {
-        //
+        return view('admin.plates.edit', compact('plate'));
     }
 
     /**
@@ -73,9 +78,11 @@ class PlateController extends Controller
      * @param  int  $id
      * //@return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Plate $plate)
     {
-        //
+        $data = $request->all();
+        $plate->update($data);
+        return redirect()->route('admin.plates.index', $plate);
     }
 
     /**
@@ -87,5 +94,18 @@ class PlateController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function visibility(Plate $plate, Request $request)
+    {
+
+        $data = $request->all();
+        $plate->visibility = !Arr::exists($data, 'visibility') ? 1 : null;
+        $plate->save();
+
+        $user = Auth::user();
+
+        Mail::to($user->email)->send(new PlateVisibility($plate));
+
+        return redirect()->back();
     }
 }
