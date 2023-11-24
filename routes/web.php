@@ -29,8 +29,6 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
-    Route::resource('projects', ProjectController::class);
-
   });
 
 require __DIR__ . '/auth.php';
