@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Plate extends Model
 {
     use HasFactory;
+    protected $fillable = ["name", "ingredients", "link", "description", "image", "price", "visibility"];
+
 }
