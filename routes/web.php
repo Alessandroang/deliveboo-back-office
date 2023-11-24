@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
     Route::resource('plates', PlateController::class);
+    Route::patch('/plates/{plate}/visibility', [PlateController::class, 'visibility'])->name('plates.visibility');
   });
 
 require __DIR__ . '/auth.php';
