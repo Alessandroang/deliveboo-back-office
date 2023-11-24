@@ -17,11 +17,13 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $project = new User;
+        $user = new User;
 
-        $project->name = "Admin";
-        $project->email = "Admin@gmail.com";
-        $project->password = Hash::make('password');
-        $project->save();
+        $user->name = "Admin";
+        $user->lastname = "Admin";
+        $user->email = "Admin@gmail.com";
+        $user->password = Hash::make('password');
+        $user->vat = "12345678901";
+        $user->save();
     }
 }
