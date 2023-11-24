@@ -4,10 +4,18 @@
     <div class="food_container">
         <div class="container">
             <div class=" mt-3 row g-2">
-                <h1>Menù :</h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Menù :</h1>
+                    <div class="btn btn-primary ms-auto">
+                        <a class="text-white text-decoration-none " href="{{ route('admin.plates.create') }}">➕ Aggiungi
+                            piatto
+                        </a>
+                    </div>
+                </div>
+
                 {{ $plates->links('pagination::bootstrap-5') }}
                 @foreach ($plates as $plate)
-                    <figure class="food col-md-12 col-lg-6">
+                    <figure class="food col-sm-12 col-md-6">
                         {{-- <div class="food__hero">
                             <img src={{ $plate->image }} alt="food" class="food__img">
                         </div> --}}
