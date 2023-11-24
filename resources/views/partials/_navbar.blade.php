@@ -23,7 +23,7 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.projects.index') }}">Progetti</a>
+                        <a class="nav-link" href="{{ route('admin.plates.index') }}">Menù</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

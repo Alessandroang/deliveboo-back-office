@@ -15,8 +15,8 @@ class PlateController extends Controller
      */
     public function index()
     {
-        $plates = Plate::all();
-        return view("admin.plate.index", compact("plates"));
+        $plates = Plate::orderByDesc('id')->paginate(6);
+        return view("admin.plates.index", compact("plates"));
     }
 
     /**
