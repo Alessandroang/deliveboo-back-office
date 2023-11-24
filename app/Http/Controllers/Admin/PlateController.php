@@ -26,7 +26,7 @@ class PlateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plates.create');
     }
 
     /**
@@ -37,7 +37,11 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $plate = new Plate;
+        $plate->fill($data);
+        $plate->save();
+        return redirect()->route('admin.plates.index', $plate);
     }
 
     /**
@@ -46,9 +50,9 @@ class PlateController extends Controller
      * @param  int  $id
      * //@return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Plate $plate)
     {
-        //
+        return view('admin.plates.show', compact('plate'));
     }
 
     /**
