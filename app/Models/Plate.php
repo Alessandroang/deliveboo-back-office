@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Plate extends Model
 {
     use HasFactory;
-    protected $fillable = ["name", "ingredients", "description", "image", "price", "visibility"];
+    protected $fillable = ["name", "ingredients", "description", "image", "price"];
     public function getAbstract($chars = 150)
     {
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . '...' : $this->description;
