@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 
-
-use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\PlateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +27,7 @@ Route::middleware(['auth', 'verified'])
   ->group(function () {
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
-
+    Route::resource('plates', PlateController::class);
   });
 
 require __DIR__ . '/auth.php';
