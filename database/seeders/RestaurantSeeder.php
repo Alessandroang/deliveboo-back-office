@@ -24,7 +24,7 @@ class RestaurantSeeder extends Seeder
         $restaurant->image = 'Ci metteremo un img';
         $restaurant->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore veritatis odio sint accusamus velit impedit quaerat unde cumque a';
         $restaurant->phone = '388888888';
-        // $restaurant->type_id = random_int(1, 8);
+        $restaurant->type_id = random_int(1, 8);
 
         $restaurant->save();
     }

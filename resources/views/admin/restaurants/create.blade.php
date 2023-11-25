@@ -24,10 +24,10 @@
                 <label for="description" class="form-label">Descrizione del ristorante</label>
                 <textarea class="form-control" id="description" name="description" required></textarea>
             </div>
-
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di telefono</label>
-                <input type="text" class="form-control" id="phone" name="phone" required>
+                <input type="text" class="form-control" id="phone" name="phone" pattern="[0-9]+" required>
+                <div class="text-danger">Inserisci solo numeri nel campo del numero di cellulare.</div>
             </div>
 
             <!-- Altri campi del modulo -->

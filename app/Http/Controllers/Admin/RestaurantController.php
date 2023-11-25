@@ -25,11 +25,11 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|alpha|max:50',
             'address' => 'required|string',
             'image' => 'required|url',
             'description' => 'required|string',
-            'phone' => 'required|string|max:20',
+            'phone' => 'required|numeric|max:20',
             // ... altre regole di validazione
         ]);
         $userId = auth()->id();
