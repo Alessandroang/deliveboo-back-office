@@ -9,7 +9,7 @@ class Type extends Model
 {
     use HasFactory;
     #Opzionali
-    protected $fillable = ['label', 'color'];
+    protected $fillable = ['name', 'color'];
 
     protected $hidden = ['pivot'];
 
@@ -20,6 +20,6 @@ class Type extends Model
     #Opzionali
     public function getTypeBadge()
     {
-        return $this->label ? "<span class='badge' style='background-color: {$this->color}'>{$this->label}</span>" : 'Nessuna tipologia specificata';
+        return $this->name ? "<span class='badge' style='background-color: {$this->color}'>{$this->name}</span>" : 'Nessuna tipologia specificata';
     }
 }

@@ -16,19 +16,21 @@
                             {{-- <img src="{{ $restaurant->image }}" alt="Immagine del ristorante" class="img-fluid"> --}}
                         </div>
 
-                        <div>
-                            <h3>Tipologie:</h3>
-                            @if ($restaurant->types && count($restaurant->types) > 0)
-                                @foreach ($restaurant->types as $type)
-                                    <span class="badge bg-secondary">{{ $type->label }}</span>
-                                @endforeach
-                            @else
-                                <span class="badge bg-secondary">Nessuna tipologia disponibile</span>
-                            @endif
-                        </div>
+
 
                         <div class="col-md-8">
                             <h2 class="card-title">{{ $restaurant->name }}</h2>
+
+                            <h4>Tipologia: @if ($restaurant->types && count($restaurant->types) > 0)
+                                    @foreach ($restaurant->types as $type)
+                                        <span class="badge bg-secondary">{{ $type->name }}</span>
+                                    @endforeach
+                                @else
+                                    <span class="badge bg-secondary">Nessuna tipologia disponibile</span>
+                                @endif
+                            </h4>
+
+
                             <p class="card-text">{{ $restaurant->description }}</p>
                             <!-- Pulsante Dettagli -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"

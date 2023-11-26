@@ -21,7 +21,7 @@ class TypeSeeder extends Seeder
 
         foreach ($_types as $_type) {
             $type = new Type();
-            $type->label = $_type;
+            $type->name = $_type;
             $type->description = $faker->sentence;
 
             $type->save();
