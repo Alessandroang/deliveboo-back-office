@@ -35,8 +35,8 @@ class RestaurantController extends Controller
             'image' => 'required|url',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:20',
-            'type_id' => 'nullable|exists:types,id',
-            'types' => ['nullable', 'array', 'exists:types,id'],
+            // 'type_id' => 'nullable|exists:types,id',
+            // 'types' => ['nullable', 'array', 'exists:types,id'],
             // ... altre regole di validazione
         ]);
 
@@ -56,7 +56,7 @@ class RestaurantController extends Controller
             'image' => $request->input('image'),
             'description' => $request->input('description'),
             'phone' => $request->input('phone'),
-            'type_id' => $request->input('type_id'),
+            // 'type_id' => $request->input('type_id'),
             // ... altre colonne del tuo modello Restaurant
         ]);
 
