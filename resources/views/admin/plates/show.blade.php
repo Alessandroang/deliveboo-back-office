@@ -24,7 +24,7 @@
                             {{-- <p class="food__detail"><span class="emoji">⭐️</span>4.7 / 5</p> --}}
                         </div>
                     </div>
-                    <div class="food__price"><a href="{{ route('admin.plates.index', $plate) }}">⬇️</a></div>
+                    <div class="food__routes"><a href="{{ route('admin.plates.index', $plate) }}">⬇️</a></div>
                 </figure>
             </div>
         </div>

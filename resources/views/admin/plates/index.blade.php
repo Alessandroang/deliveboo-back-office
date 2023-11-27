@@ -48,7 +48,7 @@
                                 {{-- <p class="food__detail"><span class="emoji">⭐️</span>4.7 / 5</p> --}}
                             </div>
                         </div>
-                        <div class="food__price">
+                        <div class="food__routes">
                             <a class="my2 text-decoration-none" href="{{ route('admin.plates.show', $plate) }}">🔎</a>
                             <a class="my2 text-decoration-none" href="{{ route('admin.plates.edit', $plate) }}">🖊️</a>
                             <button class="btn my2" data-bs-toggle="modal"

@@ -1,93 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+    <div class="restaurant_container">
+        <div class="container">
+            <div class=" mt-3 row justify-content-center g-2">
+                @if ($restaurant)
+                    <h1>Dettaglio Ristorante</h1>
+                    <div class="food__hero col-6 col-lg-4">
+                        <img src={{ $restaurant->image }} alt="restaurant-image" class="food__img">
+                    </div>
+                    <figure class="food col-6">
+                        <div class="restaurant__content">
+                            <div class="food__title">
+                                <h1 class="food__heading">{{ $restaurant->name }} 🏡</h1>
 
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    @if ($restaurant)
-                        <div class="col-md-4">
-                            {{-- <img src="{{ $restaurant->image }}" alt="Immagine del ristorante" class="img-fluid"> --}}
+                                <div>
+                                    @if ($restaurant->types && count($restaurant->types) > 0)
+                                        @foreach ($restaurant->types as $type)
+                                            <span class="tag restaurant__tag">{{ $type->name }}</span>
+                                        @endforeach
+                                    @else
+                                        <span class="tag restaurant__tag">Nessuna tipologia disponibile</span>
+                                    @endif
+                                </div>
+
+                                {{-- <div class="tag food__tag--2">#italian</div> --}}
+                            </div>
+                            <p class="food__description">
+                                {{ $restaurant->description }}
+                            </p>
                         </div>
-
-
-
-                        <div class="col-md-8">
-                            <h2 class="card-title">{{ $restaurant->name }}</h2>
-
-                            <h4>Tipologia: @if ($restaurant->types && count($restaurant->types) > 0)
-                                    @foreach ($restaurant->types as $type)
-                                        <span class="badge bg-secondary">{{ $type->name }}</span>
-                                    @endforeach
-                                @else
-                                    <span class="badge bg-secondary">Nessuna tipologia disponibile</span>
-                                @endif
-                            </h4>
-
-
-                            <p class="card-text">{{ $restaurant->description }}</p>
-                            <!-- Pulsante Dettagli -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#menuModal">
-                                Visualizza Menu
-                            </button>
-                        </div>
-                    @else
-                        <div class="col-md-12">
-                            <p>Errore: il ristorante non è stato trovato.</p>
-                        </div>
-                    @endif
-                </div>
+                        <div class="restaurant__route"><a class="text_route" href="{{ route('admin.plates.index') }}">Vedi
+                                Menù</a></div>
+                    </figure>
+                @else
+                    <div class="col-md-12">
+                        <p>Errore: il ristorante non è stato trovato.</p>
+                    </div>
+                @endif
             </div>
         </div>
-    </div>
-
-
-    <!-- Modale del menu -->
-    <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    @if ($restaurant)
-                        <h5 class="modal-title" id="menuModalLabel">Menu - {{ $restaurant->name }}</h5>
-                    @else
-                        <h5 class="modal-title" id="menuModalLabel">Menu - Nome del ristorante non disponibile</h5>
-                    @endif
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenuto del menu -->
-                    @if ($restaurant)
-                        <h4>Antipasti</h4>
-                        <ul>
-                            <li>Antipasto 1</li>
-                            <li>Antipasto 2</li>
-                            <!-- Aggiungi altri elementi del menu -->
-                        </ul>
-
-                        <h4>Primi Piatti</h4>
-                        <ul>
-                            <li>Primo Piatto 1</li>
-                            <li>Primo Piatto 2</li>
-                            <!-- Aggiungi altri elementi del menu -->
-                        </ul>
-                    @else
-                        <p>Il ristorante non è stato trovato.</p>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
     </div>
 @endsection
