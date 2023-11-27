@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 
 use App\Http\Controllers\Admin\PlateController;
+use App\Http\Controllers\Admin\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +21,16 @@ use App\Http\Controllers\Admin\PlateController;
 
 Route::get('/', [GuestPageController::class, 'index'])->name('guest.home');
 
-
 Route::middleware(['auth', 'verified'])
-  ->prefix('admin')
-  ->name('admin.')
-  ->group(function () {
-
-    Route::get('/', [AdminPageController::class, 'index'])->name('home');
-    Route::resource('plates', PlateController::class);
-    Route::patch('/plates/{plate}/visibility', [PlateController::class, 'visibility'])->name('plates.visibility');
-  });
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [AdminPageController::class, 'index'])->name('home');
+        Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+        Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurants.create');
+        Route::post('/restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+        Route::resource('plates', PlateController::class);
+        Route::patch('/plates/{plate}/visibility', [PlateController::class, 'visibility'])->name('plates.visibility');
+    });
 
 require __DIR__ . '/auth.php';

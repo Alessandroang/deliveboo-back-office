@@ -12,6 +12,20 @@
                         href="{{ route('guest.home') }}" aria-current="page">Home<span
                             class="visually-hidden">(current)</span></a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.restaurants.index') }}">{{ __('Your Restaurant') }}</a>
+                    </li>
+
+                    @if (!auth()->user()->restaurant)
+                        <!-- Verifica se l'utente non ha già registrato un ristorante -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('admin.restaurants.create') }}">{{ __('Registra il tuo ristorante') }}</a>
+                        </li>
+                    @endif
+                @endauth
+
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
