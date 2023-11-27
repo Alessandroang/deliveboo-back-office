@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Plate;
+use App\Models\Restaurant;
 use Faker\Generator as Faker;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,10 +21,13 @@ class PlateSeeder extends Seeder
             // $categories = Category::all()->pluck('id')->toArray();
             // $categories[] = null;
 
+            $restaurant = Restaurant::first()->id;
+
             for ($i = 0; $i < 15; $i++) {
                 // $category_id = Arr::random($categories);
                 $plate = new Plate;
                 // $plate->category_id = $category_id;
+                $plate->restaurant_id = $restaurant;
                 $plate->name = $faker->words(2, true);
                 $plate->ingredients = implode(', ', $faker->words(5));
                 $plate->description = $faker->paragraph(5, true);
