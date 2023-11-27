@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
-            PlateSeeder::class,
-            TypeSeeder::class,
             RestaurantSeeder::class,
-            RestaurantTypeSeeder::class
+            TypeSeeder::class,
+            RestaurantTypeSeeder::class,
+            PlateSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
