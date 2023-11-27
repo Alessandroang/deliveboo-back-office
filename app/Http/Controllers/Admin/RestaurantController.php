@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Restaurant;
 use App\Models\Type;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -30,9 +31,9 @@ class RestaurantController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'name' => 'required|string|alpha|max:50',
+            'name' => 'required|string|max:50',
             'address' => 'required|string',
-            'image' => 'required|url',
+            'image' => 'required|image',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:20',
             // 'type_id' => 'nullable|exists:types,id',
@@ -59,6 +60,14 @@ class RestaurantController extends Controller
             // 'type_id' => $request->input('type_id'),
             // ... altre colonne del tuo modello Restaurant
         ]);
+
+        // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)
+        if ($request->hasFile('image')) {
+            $imagePath = Storage::put('upload/restaurants/images', $request->file('image'));
+            // # NEL DB METTIAMO IL PATH
+            $restaurant->image = $imagePath;
+        }
+
 
         // Salva il ristorante nel database
         $restaurant->save();

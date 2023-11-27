@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.restaurants.store') }}" method="post">
+        <form action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -39,10 +39,25 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="image" class="form-label">URL dell'immagine:</label>
                 <input type="url" class="form-control" id="image" name="image" value="{{ old('image') }}"
                     required>
+            </div> --}}
+
+            <div class="row">
+                <div class="col-3">
+                    <label for="image">URL dell'immagine:</label>
+                    <input type="file" name="image" id="image"
+                        class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
+                    @error('image')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-4 mt-2">
+                    <img src="" class="img-fluid" id="image_preview">
+
+                </div>
             </div>
 
             <div class="mb-3">
@@ -54,7 +69,6 @@
                 <label for="phone" class="form-label">Numero di telefono:</label>
                 <input type="text" class="form-control" id="phone" name="phone" pattern="[0-9]+"
                     value="{{ old('phone') }}" required>
-                <div class="text-danger">Inserisci solo numeri nel campo del numero di cellulare.</div>
             </div>
 
 
@@ -64,4 +78,20 @@
             <button type="submit" class="btn btn-primary">Registra Ristorante</button>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('image');
+        const imagePreview = document.getElementById('image_preview');
+
+        if (!imagePreview.getAttribute('src')) {
+            imagePreview.src = "https://placehold.co/400";
+        }
+
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            imagePreview.src = URL.createObjectURL(file)
+        })
+    </script>
 @endsection
