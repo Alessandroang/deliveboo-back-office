@@ -6,7 +6,7 @@
             <div class=" mt-3 row g-2">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Menù :</h1>
-                    <div class="btn btn-primary ms-auto">
+                    <div class="btn btn-primary ms-2">
                         <a class="text-white text-decoration-none " href="{{ route('admin.plates.create') }}">➕ Aggiungi
                             piatto
                         </a>
@@ -49,14 +49,60 @@
                             </div>
                         </div>
                         <div class="food__price">
-                            <a class="my2" href="{{ route('admin.plates.show', $plate) }}">🔎</a>
-                            <a class="my2" href="{{ route('admin.plates.edit', $plate) }}">🖊️</a>
+                            <a class="my2 text-decoration-none" href="{{ route('admin.plates.show', $plate) }}">🔎</a>
+                            <a class="my2 text-decoration-none" href="{{ route('admin.plates.edit', $plate) }}">🖊️</a>
+                            <button class="btn my2" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal-{{ $plate->id }}">
+                                🗑️
+                            </button>
                         </div>
                     </figure>
                 @endforeach
+                <div class="legenda_content">
+                    <h5 class="text-center mb-3">Legenda : "🔎-🖊️-🗑️"</h5>
+                    <div class="d-flex justify-content-around fw-bold">
+                        <span>🔎 = mostra i dettagli del piatto</span>
+                        <span>🖊️ = modifica i dettagli del piatto selezionato</span>
+                        <span>🗑️ = elimina il piatto selezionato</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+@endsection
+@section('modals')
+    @foreach ($plates as $plate)
+        <div class="modal fade " id="delete-modal-{{ $plate->id }}" tabindex="-1"
+            aria-labelledby="delete-modal-{{ $plate->id }}-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content food_modal">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delete-modal-{{ $plate->id }}-label">
+                            Conferma eliminazione
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Sei sicuro di voler eliminare <i>" {{ $plate->name }} "</i> con ID
+                        {{ $plate->id }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Annulla
+                        </button>
+
+                        <form action="{{ route('admin.plates.destroy', $plate) }}" method="POST">
+                            @method('DELETE') @csrf
+
+                            <button type="submit" class="btn btn-danger">
+                                Elimina
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
 @section('scripts')
     <script>

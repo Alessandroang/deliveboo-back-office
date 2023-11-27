@@ -18,7 +18,15 @@ Mid: #5aaa9d
   font-family: Roboto;
   padding:30px 0;
   background: linear-gradient(to bottom right, #67b26f, #4ca2cd);
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.food_modal {
+  color: #444;
+  font-family: Roboto;
+  font-weight: 700;
+  background: linear-gradient(to bottom right, #4ca2cd, #cdc44c);
 }
 
 .food {
@@ -45,6 +53,23 @@ Mid: #5aaa9d
   max-width: calc(100% - 50px);
   display: flex;
   flex-direction: column;
+}
+
+figure:hover{
+  transform: scale(1.02);
+}
+
+.legenda_content {
+  color: #444;
+  font-family: Roboto;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow:5px 8px 8px #cdc44c ;
+  background: linear-gradient(to bottom right, #2c97cd, #73cd4c);
+}
+
+.legenda_content:hover{
+  transform: scale(1.05);
 }
 
 .food__price {

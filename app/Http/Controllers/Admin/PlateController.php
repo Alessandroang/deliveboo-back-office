@@ -10,6 +10,7 @@ use App\Mail\PlateVisibility;
 use App\Http\Controllers\Controller;
 use App\Models\Plate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
@@ -82,7 +83,7 @@ class PlateController extends Controller
     {
         $data = $request->all();
         $plate->update($data);
-        return redirect()->route('admin.plates.index', $plate);
+        return redirect()->route('admin.plates.show', $plate);
     }
 
     /**
@@ -91,10 +92,7 @@ class PlateController extends Controller
      * @param  int  $id
      * //@return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+
     public function visibility(Plate $plate, Request $request)
     {
 
@@ -107,5 +105,11 @@ class PlateController extends Controller
         Mail::to($user->email)->send(new PlateVisibility($plate));
 
         return redirect()->back();
+    }
+
+    public function destroy(Plate $plate)
+    {
+        $plate->delete();
+        return redirect()->route('admin.plates.index');
     }
 }
