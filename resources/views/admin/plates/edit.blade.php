@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="row">
-                            <div class="col-6 my-2">
+                            <div class="col-12 my-2">
                                 <label for="name" class="form-label fw-bold">Nome piatto</label>
                                 <input type="text" id="name" name="name"
                                     class="form-control  @error('name') is-invalid @enderror" placeholder="Plate name"
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-4">
                                     <label for="image">URL dell'immagine:</label>
                                     <input type="file" name="image" id="image"
                                         class="form-control @error('image') is-invalid @enderror"
@@ -36,13 +36,13 @@
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-4 mt-2">
+                                <div class="col-8 mt-2">
                                     <img src="{{ asset('/storage/' . $plate->image) }}" class="img-fluid"
                                         id="image_preview">
                                 </div>
                             </div>
 
-                            <div class="col-6 my-2">
+                            <div class="col-12 my-2">
                                 <label for="price" class="form-label fw-bold">Prezzo</label>
                                 <input type="text" id="price" name="price"
                                     class="form-control @error('price') is-invalid @enderror" placeholder="Plate price"
@@ -69,7 +69,7 @@
                             @enderror --}}
                             {{-- </div> --}}
 
-                            <div class="col-6">
+                            <div class="col-12">
                                 <label for="ingredients" class="form-label fw-bold">Ingredienti</label>
                                 <input type="textarea" id="ingredients" name="ingredients"
                                     class="form-control @error('ingredients') is-invalid @enderror"

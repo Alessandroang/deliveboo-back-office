@@ -49,6 +49,18 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'ingredients' => 'required|string',
+            'description' => 'nullable|string',
+            'image' => 'required|image',
+            'price' => 'required|numeric|decimal:0,2',
+            'visibility' => 'nullable|boolean',
+            // 'type_id' => 'nullable|exists:types,id',
+            // 'types' => ['nullable', 'array', 'exists:types,id'],
+            // ... altre regole di validazione
+        ]);
+
         $data = $request->all();
 
         // Recupera il ristorante corrente
@@ -103,6 +115,18 @@ class PlateController extends Controller
      */
     public function update(Request $request, Plate $plate)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'ingredients' => 'required|string',
+            'description' => 'nullable|string',
+            'image' => 'required|image',
+            'price' => 'required|numeric|decimal:0,2',
+            'visibility' => 'nullable|boolean',
+            // 'type_id' => 'nullable|exists:types,id',
+            // 'types' => ['nullable', 'array', 'exists:types,id'],
+            // ... altre regole di validazione
+        ]);
+
         $data = $request->all();
 
         if ($request->hasFile('image')) {
