@@ -22,6 +22,16 @@ Mid: #5aaa9d
   height: 100%;
 }
 
+.restaurant_container {
+  color: #f8f2f2;
+  font-family: Roboto;
+  padding:30px 0;
+  background: linear-gradient(to bottom right, #961515, #c6c613);
+  min-height: 100vh;
+  height: 100%;
+}
+
+
 .food_modal {
   color: #444;
   font-family: Roboto;
@@ -55,6 +65,15 @@ Mid: #5aaa9d
   flex-direction: column;
 }
 
+.restaurant__content {
+  flex: 1;
+  background:#444;
+  padding: 25px 20px;
+  max-width: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+}
+
 figure:hover{
   transform: scale(1.02);
 }
@@ -72,7 +91,7 @@ figure:hover{
   transform: scale(1.05);
 }
 
-.food__price {
+.food__routes {
   flex: 0 0 50px;
   background: linear-gradient(to bottom, #67b26f, #4ca2cd);
   writing-mode: vertical-rl;
@@ -82,6 +101,23 @@ figure:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.restaurant__route {
+  flex: 0 0 50px;
+  background: linear-gradient(to bottom,  #961515, #c6c613);
+  writing-mode: vertical-rl;
+  color: white;
+  font-size: 18px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text_route{
+  text-decoration: none;
+  color: #f8f2f2;
 }
 
 .food__title {
@@ -95,7 +131,7 @@ figure:hover{
   margin-right: auto;
 }
 
-.food__tag {
+.tag {
   font-size: 10px;
   text-transform: uppercase;
   color: white;
@@ -104,9 +140,9 @@ figure:hover{
   margin-left: 7px;
 }
 
-.food__tag--1 { background-color: #67b26f; }
+.restaurant__tag { background-color:  #961515; }
 
-.food__tag--2 { background-color: #4ca2cd; }
+.food__tag { background-color: #4ca2cd; }
 
 .food__description {
   font-size: 14px;
