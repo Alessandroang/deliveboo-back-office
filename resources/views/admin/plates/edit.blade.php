@@ -44,9 +44,9 @@
 
                             <div class="col-6 my-2">
                                 <label for="price" class="form-label fw-bold">Prezzo</label>
-                                <input type="number" min="8" max="20" step="0.2" id="price"
-                                    name="price" class="form-control @error('price') is-invalid @enderror"
-                                    placeholder="Plate price" value="{{ old('price') ?? $plate->price }}">
+                                <input type="text" id="price" name="price"
+                                    class="form-control @error('price') is-invalid @enderror" placeholder="Plate price"
+                                    value="{{ old('price') ?? $plate->price }}">
                                 {{-- @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}

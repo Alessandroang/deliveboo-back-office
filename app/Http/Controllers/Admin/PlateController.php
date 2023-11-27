@@ -19,10 +19,16 @@ class PlateController extends Controller
      *
      * //@return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $plates = Plate::orderByDesc('id')->paginate(6);
-        return view("admin.plates.index", compact("plates"));
+        // Recupera il ristorante solo per il ristoratore autenticato
+        $restaurant = auth()->user()->restaurant;
+
+        // Recupera i piatti (menu) del ristorante corrente
+        $menu = $restaurant->plates;
+
+        return view('admin.plates.index', compact('restaurant', 'menu'));
     }
 
     /**
@@ -44,15 +50,25 @@ class PlateController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $plate = new Plate;
+
+        // Recupera il ristorante corrente
+        $restaurant = auth()->user()->restaurant;
+
+        $plate = new Plate();
         $plate->fill($data);
+
         // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)
         if ($request->hasFile('image')) {
             $imagePath = Storage::put('upload/plates/images', $request->file('image'));
             // # NEL DB METTIAMO IL PATH
             $plate->image = $imagePath;
         }
+
+        // Assegna l'id del ristorante al piatto
+        $plate->restaurant_id = $restaurant->id;
+
         $plate->save();
+
         return redirect()->route('admin.plates.index', $plate);
     }
 
@@ -108,7 +124,6 @@ class PlateController extends Controller
 
     public function visibility(Plate $plate, Request $request)
     {
-
         $data = $request->all();
         $plate->visibility = !Arr::exists($data, 'visibility') ? 1 : null;
         $plate->save();

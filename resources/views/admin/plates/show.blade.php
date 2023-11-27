@@ -6,7 +6,7 @@
             <div class=" mt-3 row justify-content-center g-2">
                 <h1>Dettaglio piatto :</h1>
                 <div class="food__hero col-6 col-lg-4">
-                    <img src={{ $plate->image }} alt="food" class="food__img">
+                    <img src={{ asset('/storage/' . $plate->image) }} alt="food" class="food__img img-fluid">
                 </div>
                 <figure class="food col-6">
                     <div class="food__content">
