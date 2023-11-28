@@ -45,13 +45,15 @@
                                     <input type="file" name="image" id="image"
                                         class="form-control @error('image') is-invalid @enderror"
                                         value="{{ old('image') }}">
+                                    <span id="updateMessage" class="text-danger d-none">L'immagine è stata aggiornata. Si
+                                        prega di reinserirne una.</span>
                                     {{-- @error('image')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror --}}
                                 </div>
                                 <div class="col-4 mt-2">
-                                    <img src="{{ asset('/storage/' . $plate->image) }}" class="img-fluid"
-                                        id="image_preview">
+                                    <img src="{{ $plate->image ? asset('storage/' . $plate->image) : 'https://placehold.co/400' }}"
+                                        class="img-fluid" id="image_preview">
                                 </div>
                             </div>
 
@@ -109,4 +111,26 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('image');
+        const imagePreview = document.getElementById('image_preview');
+        const updateMessage = document.getElementById('updateMessage');
+
+        function updateImagePreview() {
+            if (inputFileElement.value) {
+                const [file] = inputFileElement.files;
+                imagePreview.src = URL.createObjectURL(file);
+                imagePreview.classList.add('d-block'); // Mostra l'anteprima
+                updateMessage.classList.add('d-none'); // Mostra il messaggio di avviso
+            } else {
+                updateMessage.classList.remove('d-none'); // Nascondi il messaggio se l'input è vuoto
+            }
+        }
+
+        inputFileElement.addEventListener('change', updateImagePreview);
+        window.addEventListener('DOMContentLoaded', updateImagePreview);
+    </script>
 @endsection
