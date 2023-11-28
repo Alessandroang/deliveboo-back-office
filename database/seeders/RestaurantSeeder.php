@@ -1,7 +1,9 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Type;
+use App\Models\User;
 use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,8 +17,10 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
+        $userId = User::first()->id;
+
         $restaurant = new Restaurant();
-        $restaurant->user_id = '1';
+        $restaurant->user_id = $userId;
 
         $restaurant->name = "Il ristorante piu bello d'Italia";
         $restaurant->address = 'Via del mare 103';
