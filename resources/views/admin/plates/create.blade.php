@@ -10,13 +10,26 @@
                     </a>
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="m-3 text-danger">* Questi campi sono obbligatori</div>
+
             <form action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">
                         <div class="row">
                             <div class="col-12 my-2">
-                                <label for="name" class="form-label fw-bold">Nome piatto</label>
+                                <label for="name" class="form-label fw-bold">Nome piatto*:</label>
                                 <input type="text" id="name" name="name"
                                     class="form-control  @error('name') is-invalid @enderror" placeholder="Plate name"
                                     value="{{ old('name') }}">
@@ -26,8 +39,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-4">
-                                    <label for="image">URL dell'immagine:</label>
+                                <div class="col-8">
+                                    <label for="image" class="form-label fw-bold">URL dell'immagine*:</label>
                                     <input type="file" name="image" id="image"
                                         class="form-control @error('image') is-invalid @enderror"
                                         value="{{ old('image') }}">
@@ -35,13 +48,13 @@
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-8 mt-2">
+                                <div class="col-4 mt-2">
                                     <img src="" class="img-fluid" id="image_preview">
                                 </div>
                             </div>
 
                             <div class="col-12 my-2">
-                                <label for="price" class="form-label fw-bold">Prezzo</label>
+                                <label for="price" class="form-label fw-bold">Prezzo*:</label>
                                 <input type="text" id="price" name="price"
                                     class="form-control @error('price') is-invalid @enderror" placeholder="Plate price"
                                     value="{{ old('price') }}">
@@ -68,7 +81,7 @@
                             {{-- </div> --}}
 
                             <div class="col-12">
-                                <label for="ingredients" class="form-label fw-bold">Ingredienti</label>
+                                <label for="ingredients" class="form-label fw-bold">Ingredienti*:</label>
                                 <input type="textarea" id="ingredients" name="ingredients"
                                     class="form-control @error('ingredients') is-invalid @enderror"
                                     placeholder="Plate ingredients" value="{{ old('ingredients') }}">

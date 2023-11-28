@@ -51,10 +51,10 @@ class PlateController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'ingredients' => 'required|string',
             'description' => 'nullable|string',
             'image' => 'required|image',
             'price' => 'required|numeric|decimal:0,2',
+            'ingredients' => 'required|string',
             'visibility' => 'nullable|boolean',
             // 'type_id' => 'nullable|exists:types,id',
             // 'types' => ['nullable', 'array', 'exists:types,id'],
@@ -117,10 +117,10 @@ class PlateController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'ingredients' => 'required|string',
             'description' => 'nullable|string',
             'image' => 'required|image',
             'price' => 'required|numeric|decimal:0,2',
+            'ingredients' => 'required|string',
             'visibility' => 'nullable|boolean',
             // 'type_id' => 'nullable|exists:types,id',
             // 'types' => ['nullable', 'array', 'exists:types,id'],
