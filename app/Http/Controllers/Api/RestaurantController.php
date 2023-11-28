@@ -4,49 +4,68 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Restaurant;
 use App\Models\Type;
+use App\Order;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
+    //Api restaurants with types
     public function index()
     {
-        //Specifichiamo i campi che vogliamo vedere in vue
-        $restaurant = Restaurant::all();
-
-        // ! DA SISTEMARE PERO' LA CHIAMATA FUNZIONA
-
-        //->with('restaurant_type: restaurant_id', 'type:id, name')
-        //->orderByDesc('id')
-        //->paginate(6);
-        return response()->json($restaurant);
+        $restaurants = Restaurant::with(['types'])->get();
+        return response()->json($restaurants);
     }
-    public function show($id)
+
+    //Api types
+    public function show()
     {
-
-        $restaurant = Restaurant::with('restaurant_type: restaurant_id', 'type:id, name')
-            ->where('id', $id)
-            ->first();
-        if (!$restaurant)
-            abort(404, "Ristorante non trovato");
-        return response()->json($restaurant);
+        $types = Type::all();
+        return response()->json($types);
     }
 
-    public function projectByType($type_id)
+    public function restaurantsByFilters(Request $request)
     {
-        $type = Type::find($type_id);
+        $filters = $request->all();
 
-        if (!$type)
-            abort(404, "Tipo non trovato");
+        $restaurants_query = Restaurant::select("id", "user_id", "name", "address", "description", "phone", "image")
+            ->with('types:id,name')
+            ->orderByDesc('id');
 
-        $restaurants = Restaurant::with('type:id,name')
-            ->orderBy('id', 'desc')
-            ->where('type_id', $type_id)
-            ->paginate(6);
+        if (!empty($filters['activeTypes'])) {
+            foreach ($filters['activeTypes'] as $type) {
+                $restaurants_query->whereHas('types', function ($query) use ($type) {
+                    $query->where('type_id', $type);
+                });
+            }
+        }
 
-        return response()->json(
-            $restaurants
-        );
+        $restaurants = $restaurants_query->paginate(6);
+
+        return response()->json($restaurants);
     }
+
+    /* //Api filteredRestaurants
+     public function filtered($category)
+     {
+         if($category != "all") {
+             $restaurants = User::whereHas('categories', function($query) use($category) {
+                 $query->where('name', $category);
+             })->get();
+         } else {
+
+             $restaurants = User::all();
+         }
+
+
+          foreach ($restaurants as $restaurant) {
+              $categories = [];
+              $categories = $restaurant->categories;
+              $restaurant->categories = $categories;
+          };
+
+         return response()->json($restaurants);
+     }*/
+
 }

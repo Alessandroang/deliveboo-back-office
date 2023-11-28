@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\TypeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +17,15 @@ use App\Http\Controllers\Api\RestaurantController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//  RESTAURANT API
+
 Route::apiResource("/restaurants", RestaurantController::class)->only(["index", "show"]);
+Route::post('/get-restaurants-by-filters', [RestaurantController::class, 'restaurantsByFilters']);
+
+//  TYPE API
+
+Route::apiResource("types", TypeController::class)->only(["index"]);
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //  return $request->user();

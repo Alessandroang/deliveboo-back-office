@@ -17,7 +17,7 @@ class Restaurant extends Model
 
     public function types()
     {
-        return $this->belongsToMany(Type::class, 'restaurant_type', 'restaurant_id', 'type_id');
+        return $this->belongsToMany(Type::class);
     }
 
     public function plates()
