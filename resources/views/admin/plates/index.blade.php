@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="food_container">
-        <div class="mt-3 d-flex justify-content-center">
+        <div class="container mt-3 d-flex justify-content-end">
             {{ $menu->links('pagination::bootstrap-5') }}
         </div>
         <div class="container">
@@ -60,7 +60,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Sei sicuro di voler eliminare definitivamente il piatto?
+                                    Sei sicuro di voler eliminare definitivamente il piatto "{{ $plate->name }}"?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

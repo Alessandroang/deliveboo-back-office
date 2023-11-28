@@ -33,12 +33,10 @@ class RestaurantController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'address' => 'required|string',
+            'types' => 'required|array',
             'image' => 'required|image',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:20',
-            // 'type_id' => 'nullable|exists:types,id',
-            // 'types' => ['nullable', 'array', 'exists:types,id'],
-            // ... altre regole di validazione
         ]);
 
         $userId = auth()->id();
@@ -57,8 +55,6 @@ class RestaurantController extends Controller
             'image' => $request->input('image'),
             'description' => $request->input('description'),
             'phone' => $request->input('phone'),
-            // 'type_id' => $request->input('type_id'),
-            // ... altre colonne del tuo modello Restaurant
         ]);
 
         // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)

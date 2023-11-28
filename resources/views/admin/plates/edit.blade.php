@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            <div class="m-3 text-danger">* Questi campi sono obbligatori</div>
+            <div class="my-3 text-danger">* Questi campi sono obbligatori</div>
 
             <form action="{{ route('admin.plates.update', $plate) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
@@ -57,9 +57,9 @@
 
                             <div class="col-12 my-2">
                                 <label for="price" class="form-label fw-bold">Prezzo*:</label>
-                                <input type="text" id="price" name="price"
-                                    class="form-control @error('price') is-invalid @enderror" placeholder="Plate price"
-                                    value="{{ old('price') ?? $plate->price }}">
+                                <input type="number" min="0" max="100" step="0.01" id="price"
+                                    name="price" class="form-control @error('price') is-invalid @enderror"
+                                    placeholder="Plate price" value="{{ old('price') ?? $plate->price }}">
                                 {{-- @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}
