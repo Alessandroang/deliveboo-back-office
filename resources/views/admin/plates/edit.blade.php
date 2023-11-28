@@ -4,7 +4,7 @@
     <div class="food_container">
         <div class="container mt-2">
             <div class="d-flex justify-content-between align-items-center">
-                <h1>Crea un nuovo piatto :</h1>
+                <h1>Modifica piatto :</h1>
                 <div class="btn btn-primary ms-auto">
                     <a class="text-white text-decoration-none " href="{{ route('admin.plates.index') }}">⬅️ Torna al menù
                     </a>
@@ -26,14 +26,20 @@
                             @enderror --}}
                             </div>
 
-                            <div class="col-6 my-2">
-                                <label for="image" class="form-label fw-bold">Immagine</label>
-                                <input type="file" id="image" name="image"
-                                    class="form-control @error('image') is-invalid @enderror" placeholder="Plate img url"
-                                    value="{{ old('image') ?? $plate->name }}">
-                                {{-- @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror --}}
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="image">URL dell'immagine:</label>
+                                    <input type="file" name="image" id="image"
+                                        class="form-control @error('image') is-invalid @enderror"
+                                        value="{{ old('image') }}">
+                                    @error('image')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <img src="{{ asset('/storage/' . $plate->image) }}" class="img-fluid"
+                                        id="image_preview">
+                                </div>
                             </div>
 
                             <div class="col-6 my-2">

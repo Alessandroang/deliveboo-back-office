@@ -46,6 +46,12 @@ class PlateController extends Controller
         $data = $request->all();
         $plate = new Plate;
         $plate->fill($data);
+        // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)
+        if ($request->hasFile('image')) {
+            $imagePath = Storage::put('upload/plates/images', $request->file('image'));
+            // # NEL DB METTIAMO IL PATH
+            $plate->image = $imagePath;
+        }
         $plate->save();
         return redirect()->route('admin.plates.index', $plate);
     }
@@ -82,6 +88,13 @@ class PlateController extends Controller
     public function update(Request $request, Plate $plate)
     {
         $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            // Carica la nuova immagine e aggiorna il campo 'image'
+            $imagePath = $request->file('image')->store('plates/images', 'public');
+            $data['image'] = $imagePath;
+        }
+
         $plate->update($data);
         return redirect()->route('admin.plates.show', $plate);
     }
