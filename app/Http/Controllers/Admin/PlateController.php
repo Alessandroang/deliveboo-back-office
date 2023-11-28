@@ -26,7 +26,7 @@ class PlateController extends Controller
         $restaurant = auth()->user()->restaurant;
 
         // Recupera i piatti (menu) del ristorante corrente
-        $menu = $restaurant->plates;
+        $menu = $restaurant->plates()->paginate(6);
 
         return view('admin.plates.index', compact('restaurant', 'menu'));
     }

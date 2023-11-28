@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="food_container">
+        <div class="mt-3 d-flex justify-content-center">
+            {{ $menu->links('pagination::bootstrap-5') }}
+        </div>
         <div class="container">
             <div class="mt-3 row g-2">
                 <div class="d-flex justify-content-between align-items-center">
@@ -63,6 +66,7 @@
                         <span>🗑️ = elimina il piatto selezionato</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
