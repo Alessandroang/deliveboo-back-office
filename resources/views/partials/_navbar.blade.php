@@ -17,6 +17,10 @@
                         <a class="nav-link" href="{{ route('admin.restaurants.index') }}">{{ __('Your Restaurant') }}</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.plates.index') }}">{{ __('Menù') }}</a>
+                    </li>
+
                     @if (!auth()->user()->restaurant)
                         <!-- Verifica se l'utente non ha già registrato un ristorante -->
                         <li class="nav-item">
