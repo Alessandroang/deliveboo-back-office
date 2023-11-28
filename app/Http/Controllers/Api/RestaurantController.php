@@ -13,11 +13,13 @@ class RestaurantController extends Controller
     public function index()
     {
         //Specifichiamo i campi che vogliamo vedere in vue
-        $restaurant = Restaurant::all()
-            ->with('restaurant_type: restaurant_id', 'type:id, name')
-            ->orderByDesc('id')
-            ->where('visibility', 1)
-            ->paginate(6);
+        $restaurant = Restaurant::all();
+
+        // ! DA SISTEMARE PERO' LA CHIAMATA FUNZIONA
+
+        //->with('restaurant_type: restaurant_id', 'type:id, name')
+        //->orderByDesc('id')
+        //->paginate(6);
         return response()->json($restaurant);
     }
     public function show($id)
