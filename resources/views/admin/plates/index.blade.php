@@ -17,11 +17,6 @@
 
                 @foreach ($menu as $plate)
                     <figure class="food col-sm-12 col-md-6">
-                        {{-- Rimuovi commento alla sezione che mostra l'immagine --}}
-                        {{-- <div class="food__hero">
-                            <img src={{ $plate->image }} alt="food" class="food__img">
-                        </div> --}}
-
                         <div class="food__content">
                             <div class="food__title">
                                 <h1 class="food__heading">{{ $plate->name }} 🍽️</h1>
@@ -43,19 +38,42 @@
                             <div>
                                 <p class="food__detail"><span class="emoji">👨‍🍳</span>{{ $plate->ingredients }}</p>
                                 <p class="food__detail"><span class="emoji">💶</span>{{ $plate->price }} €</p>
-                                {{-- <p class="food__detail"><span class="emoji">⭐️</span>4.7 / 5</p> --}}
                             </div>
                         </div>
                         <div class="food__routes">
                             <a class="my2 text-decoration-none" href="{{ route('admin.plates.show', $plate) }}">🔎</a>
                             <a class="my2 text-decoration-none" href="{{ route('admin.plates.edit', $plate) }}">🖊️</a>
-                            <form action="{{ route('admin.plates.destroy', $plate) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn">🗑️</button>
-                            </form>
+                            <button class="btn" data-bs-toggle="modal"
+                                data-bs-target="#deletePlateModal{{ $plate->id }}">🗑️</button>
                         </div>
                     </figure>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deletePlateModal{{ $plate->id }}" tabindex="-1"
+                        aria-labelledby="deletePlateModalLabel{{ $plate->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deletePlateModalLabel{{ $plate->id }}">Conferma
+                                        eliminazione</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare definitivamente il piatto?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                    <form action="{{ route('admin.plates.destroy', $plate) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
 
                 <div class="legenda_content">
@@ -66,7 +84,6 @@
                         <span>🗑️ = elimina il piatto selezionato</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
