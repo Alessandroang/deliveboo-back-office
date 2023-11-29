@@ -1,26 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Dashboard') }}
-    </h2>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
+    <div class="container">
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card text-center my-3 border-black border-1">
+                    <div class="card-header bg-success-subtle">
+                        <h1>{{ __('Benvenuto!') }}</h1>
                     </div>
-                    @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="card-body ">
+                        @if (session('status'))
+                            <div>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if (!auth()->user()->restaurant)
+                            <h4>{{ __('Sei riuscito a iscriverti! Congratulazioni!') }}</h4>
+
+                            <div class="my-4">
+                                <button type="button" class="btn btn-warning btn-lg">
+                                    <a class="nav-link"
+                                        href="{{ route('admin.restaurants.create') }}">{{ __('Registra il tuo Ristorante') }}
+                                    </a>
+                                </button>
+                            </div>
+                        @endif
+                        @if (auth()->user()->restaurant)
+                            <h4>{{ __('E\' un piacere rivederti!') }}</h4>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('guest.home') }}">Navbar</a>
+        <a class="navbar-brand" href="{{ route('guest.home') }}">Deliveboo</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,30 +13,33 @@
                             class="visually-hidden">(current)</span></a>
                 </li>
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.restaurants.index') }}">{{ __('Your Restaurant') }}</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.plates.index') }}">{{ __('Menù') }}</a>
-                    </li>
+                    @if (auth()->user()->restaurant)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('admin.restaurants.index') }}">{{ __('Il tuo ristorante') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.plates.index') }}">{{ __('Menù') }}</a>
+                        </li>
+                    @endif
 
                     @if (!auth()->user()->restaurant)
                         <!-- Verifica se l'utente non ha già registrato un ristorante -->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link"
                                 href="{{ route('admin.restaurants.create') }}">{{ __('Registra il tuo ristorante') }}</a>
-                        </li>
+                        </li> --}}
                     @endif
                 @endauth
 
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                         </li>
                     @endif
                 @else
@@ -49,12 +52,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.home') }}">{{ __('Dashboard') }}</a>
-                            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">{{ __('Benvenuto') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                        document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Disconnetiti') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
