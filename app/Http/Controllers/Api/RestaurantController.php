@@ -14,7 +14,14 @@ class RestaurantController extends Controller
     //Api restaurants with types
     public function index()
     {
-        $restaurants = Restaurant::with(['types'])->get();
+        $restaurants = Restaurant::select("id", "user_id", "name", "address", "description", "phone", "image")
+
+            ->orderByDesc('id')
+            ->with(['types'])
+            ->paginate(2);
+
+        //with(['types'])->get() //->paginate(6);
+
         return response()->json($restaurants);
     }
 
