@@ -7,8 +7,7 @@
                 @if ($restaurant)
                     <h1>Dettaglio Ristorante</h1>
                     <div class="food__hero col-6 col-lg-4">
-                        <img src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image"
-                            class="food__img img-fluid">
+                        <img src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image" class="food__image">
                     </div>
                     <figure class="food col-6">
                         <div class="restaurant__content">
