@@ -24,8 +24,6 @@ class RestaurantController extends Controller
             $restaurant->image = $restaurant->getAbsUriImage();
         }
 
-        // SISTEMARE LATO FRONT-OFFICE CON LE IMAGE
-
         //with(['types'])->get() //->paginate(6);
 
         return response()->json($restaurants);

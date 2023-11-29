@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use Faker\Factory as Faker;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,7 +23,6 @@ class TypeSeeder extends Seeder
         foreach ($_types as $_type) {
             $type = new Type();
             $type->name = $_type;
-            $type->description = $faker->sentence;
 
             $type->save();
         }
