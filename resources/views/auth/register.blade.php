@@ -121,9 +121,12 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" id="register-button" @click="submitForm">
                                         {{ __('Registrati') }}
                                     </button>
+
+
+
                                 </div>
                             </div>
                         </form>
@@ -133,11 +136,12 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
     <script>
         const password = document.getElementById('password');
         const passwordConfirm = document.getElementById('password-confirm');
+        const vat = document.getElementById('vat'); // Aggiunto il riferimento alla partita IVA
+        const form = document.querySelector('form'); // Dichiarato a livello globale
 
         passwordConfirm.addEventListener('keyup', function() {
             if (password.value !== passwordConfirm.value) {
@@ -146,7 +150,33 @@
             } else {
                 passwordConfirm.classList.remove('is-invalid');
                 passwordConfirm.classList.add('is-valid');
-            };
+            }
         });
+
+        const isValidVAT = (inputVAT) => {
+            // Personalizza la regular expression per la validazione della partita IVA
+            const vatRegex = /^0?\d{11}$/;
+            return vatRegex.test(inputVAT);
+        };
+
+        const submitForm = () => {
+            // Aggiungi qui la tua logica di validazione del form
+            if (password.value !== passwordConfirm.value) {
+                alert('Le password non corrispondono');
+                return;
+            }
+
+            // Utilizza la tua funzione di validazione personalizzata per la partita IVA
+            if (!isValidVAT(vat.value)) {
+                alert('La partita IVA non è valida'); // Personalizza il messaggio di errore
+                return;
+            }
+
+            // Se il form è valido, invia la richiesta al backend
+            form.submit();
+        };
+
+        // Assegna il metodo al click del pulsante
+        document.getElementById('register-button').addEventListener('click', submitForm);
     </script>
 @endsection

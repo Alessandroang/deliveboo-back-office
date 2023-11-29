@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card text-center my-3 border-black border-1">
@@ -19,6 +18,8 @@
                         @if (!auth()->user()->restaurant)
                             <h4>{{ __('Sei riuscito a iscriverti! Congratulazioni!') }}</h4>
 
+                            <h5>{{ __('Benvenuto') }}, {{ auth()->user()->name }}!</h5>
+
                             <div class="my-4">
                                 <button type="button" class="btn btn-warning btn-lg">
                                     <a class="nav-link"
@@ -28,7 +29,7 @@
                             </div>
                         @endif
                         @if (auth()->user()->restaurant)
-                            <h4>{{ __('E\' un piacere rivederti!') }}</h4>
+                            <h4>{{ __('E\' un piacere rivederti,') }} {{ auth()->user()->name }}!</h4>
                         @endif
                     </div>
                 </div>
