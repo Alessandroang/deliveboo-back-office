@@ -20,6 +20,12 @@ class RestaurantController extends Controller
             ->with(['types'])
             ->paginate(6);
 
+        foreach ($restaurants as $restaurant) {
+            $restaurant->image = $restaurant->getAbsUriImage();
+        }
+
+        // SISTEMARE LATO FRONT-OFFICE CON LE IMAGE
+
         //with(['types'])->get() //->paginate(6);
 
         return response()->json($restaurants);
