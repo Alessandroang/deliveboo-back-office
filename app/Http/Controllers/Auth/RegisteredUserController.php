@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
             'name' => ['nullable', 'string', 'alpha:ascii', 'max:50'],
             'lastname' => ['nullable', 'string', 'alpha:ascii', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'vat' => ['required', 'numeric', 'integer', 'digits:11'],
+            'vat' => ['required', 'numeric', 'regex:/^0?\d{11}$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

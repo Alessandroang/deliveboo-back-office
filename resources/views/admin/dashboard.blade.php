@@ -7,7 +7,7 @@
             <div class="col">
                 <div class="card text-center my-3 border-black border-1">
                     <div class="card-header bg-success-subtle">
-                        <h1>{{ __('Welcome!') }}</h1>
+                        <h1>{{ __('Benvenuto!') }}</h1>
                     </div>
 
                     <div class="card-body ">
@@ -17,18 +17,18 @@
                             </div>
                         @endif
                         @if (!auth()->user()->restaurant)
-                            <h4>{{ __('You are logged in! Congratulations!') }}</h4>
+                            <h4>{{ __('Sei riuscito a iscriverti! Congratulazioni!') }}</h4>
 
                             <div class="my-4">
                                 <button type="button" class="btn btn-warning btn-lg">
                                     <a class="nav-link"
-                                        href="{{ route('admin.restaurants.create') }}">{{ __('Register yours Restaurant') }}
+                                        href="{{ route('admin.restaurants.create') }}">{{ __('Registra il tuo Ristorante') }}
                                     </a>
                                 </button>
                             </div>
                         @endif
                         @if (auth()->user()->restaurant)
-                            <h4>{{ __('Nice to see you again!') }}</h4>
+                            <h4>{{ __('E\' un piacere rivederti!') }}</h4>
                         @endif
                     </div>
                 </div>

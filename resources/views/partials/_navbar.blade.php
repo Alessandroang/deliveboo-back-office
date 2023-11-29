@@ -17,7 +17,7 @@
                     @if (auth()->user()->restaurant)
                         <li class="nav-item">
                             <a class="nav-link"
-                                href="{{ route('admin.restaurants.index') }}">{{ __('Your Restaurant') }}</a>
+                                href="{{ route('admin.restaurants.index') }}">{{ __('Il tuo ristorante') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.plates.index') }}">{{ __('Menù') }}</a>
@@ -35,11 +35,11 @@
 
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                         </li>
                     @endif
                 @else
@@ -52,11 +52,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.home') }}">{{ __('Welcome') }}</a>
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">{{ __('Benvenuto') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                        document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Disconnetiti') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
