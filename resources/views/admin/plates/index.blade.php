@@ -2,19 +2,17 @@
 
 @section('content')
     <div class="food_container">
-        <div class="container mt-3 d-flex justify-content-end">
-            {{ $menu->links('pagination::bootstrap-5') }}
-        </div>
         <div class="container">
             <div class="mt-3 row g-2">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Menù :</h1>
-                    <div class="btn btn-primary ms-2">
-                        <a class="text-white text-decoration-none" href="{{ route('admin.plates.create') }}">➕ Aggiungi
-                            piatto</a>
+                    <div class="btn btn-primary ms-auto">
+                        <a class="text-white text-decoration-none " href="{{ route('admin.plates.create') }}">➕ Aggiungi
+                            piatto
+                        </a>
                     </div>
                 </div>
-
+                {{ $menu->links('pagination::bootstrap-5') }}
                 @foreach ($menu as $plate)
                     <figure class="food col-sm-12 col-md-6">
                         <div class="food__content">
@@ -47,37 +45,8 @@
                                 data-bs-target="#delete-modal-{{ $plate->id }}">
                                 🗑️
                             </button>
-                            {{-- <button class="btn" data-bs-toggle="modal"
-                                data-bs-target="#deletePlateModal{{ $plate->id }}">🗑️</button> --}}
                         </div>
                     </figure>
-
-                    <!-- Modal Bootstrap-->
-                    {{-- <div class="modal fade" id="deletePlateModal{{ $plate->id }}" tabindex="-1"
-                        aria-labelledby="deletePlateModalLabel{{ $plate->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deletePlateModalLabel{{ $plate->id }}">Conferma
-                                        eliminazione</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Sei sicuro di voler eliminare definitivamente il piatto "{{ $plate->name }}"?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Annulla</button>
-                                    <form action="{{ route('admin.plates.destroy', $plate) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Elimina</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 @endforeach
 
                 <div class="legenda_content">
