@@ -18,7 +18,7 @@ class RestaurantController extends Controller
 
             ->orderByDesc('id')
             ->with(['types'])
-            ->paginate(4);
+            ->paginate(6);
 
         //with(['types'])->get() //->paginate(6);
 
