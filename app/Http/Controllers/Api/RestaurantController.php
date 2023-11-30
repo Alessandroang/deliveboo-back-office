@@ -43,6 +43,7 @@ class RestaurantController extends Controller
         $restaurants_query = Restaurant::select("id", "user_id", "name", "address", "description", "phone", "image")
             ->with('types:id,name')
             ->orderByDesc('id');
+        // ->paginate(6);
 
         if (!empty($filters['activeTypes'])) {
             foreach ($filters['activeTypes'] as $type) {
@@ -52,7 +53,12 @@ class RestaurantController extends Controller
             }
         }
 
+        //  $restaurants = $restaurants_query;
         $restaurants = $restaurants_query->paginate(6);
+        foreach ($restaurants as $restaurant) {
+            $restaurant->image = $restaurant->getAbsUriImage();
+        }
+
 
         return response()->json($restaurants);
     }
