@@ -17,8 +17,9 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::select("id", "user_id", "name", "address", "description", "phone", "image")
 
             ->orderByDesc('id')
-            ->with(['types'])
-            ->paginate(6);
+            ->with(['types', 'plates:id, restaurant_id,name,image,ingredients,description,price'])->get();
+        // ->paginate(6);
+
 
         foreach ($restaurants as $restaurant) {
             $restaurant->image = $restaurant->getAbsUriImage();
@@ -85,4 +86,6 @@ class RestaurantController extends Controller
          return response()->json($restaurants);
      }*/
 
+
 }
+
