@@ -56,6 +56,11 @@ Mid: #5aaa9d
   align-items:center ;
 }
 
+.food__image{
+  max-width: 400px;
+  max-height: 400px;
+}
+
 .food__content {
   flex: 1;
   background: white;
