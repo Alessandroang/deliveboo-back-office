@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Plate extends Model
 {
@@ -18,5 +19,10 @@ class Plate extends Model
     public function getAbstract($chars = 150)
     {
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . '...' : $this->description;
+    }
+
+    public function getAbsUriPlateImage()
+    {
+        return $this->image ? Storage::url($this->image) : null;
     }
 }
