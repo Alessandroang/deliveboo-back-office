@@ -1,9 +1,11 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
+use App\Http\Controllers\Guest\OrderController;
 
 use App\Http\Controllers\Admin\PlateController;
 use App\Http\Controllers\Admin\RestaurantController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Admin\RestaurantController;
 */
 
 Route::get('/', [GuestPageController::class, 'index'])->name('guest.home');
+Route::get('/orders', [OrderController::class, 'index'])->name('guest.orders.index');
 
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')

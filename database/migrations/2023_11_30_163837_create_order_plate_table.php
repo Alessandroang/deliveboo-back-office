@@ -22,6 +22,8 @@ return new class extends Migration {
                 ->foreignId('plate_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
+            $table->unsignedTinyInteger('quantity');
             $table->timestamps();
         });
     }
