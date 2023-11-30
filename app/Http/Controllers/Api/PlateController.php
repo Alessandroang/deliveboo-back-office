@@ -31,7 +31,7 @@ class PlateController extends Controller
     {
         $plates = Plate::select('id', 'restaurant_id', 'name', 'image', 'ingredients', 'description', 'price')
             ->where('restaurant_id', $restaurant_id)
-            // ->where('published', 1)
+            ->where('visibility', 1)
             // ->with('restaurant:id,user_id,name,address,description,phone,image')
             ->orderByDesc('id')
             ->paginate(12);
