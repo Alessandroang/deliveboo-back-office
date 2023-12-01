@@ -96,3 +96,16 @@
         </div>
     @endforeach
 @endsection
+@section('scripts')
+    <script>
+        const checkboxesVisibility = document.getElementsByClassName('checkbox-visibility');
+        console.log(checkboxesVisibility);
+        for (checkbox of checkboxesVisibility) {
+            checkbox.addEventListener('click', function() {
+                const idPlate = this.getAttribute('data-id');
+                const form = document.getElementById('form-visibility-' + idPlate);
+                form.submit();
+            })
+        }
+    </script>
+@endsection
