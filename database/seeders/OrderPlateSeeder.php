@@ -4,11 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Order;
 use App\Models\Plate;
-use App\Models\OrderPlate;
 use Faker\Generator as Faker;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class OrderPlateSeeder extends Seeder
 {
@@ -19,16 +17,28 @@ class OrderPlateSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        // $faker = Faker::create();
-        $order_plate = new OrderPlate;
+        // Ottieni tutti gli ordini e piatti esistenti
         $orders = Order::all();
-        $plates = Plate::all()
-            ->pluck('id')
-            ->toArray();
+        $plates = Plate::all();
 
-        foreach ($orders as $order) {
-            $order_plate->quantity = $faker->randomNumber(1, 10);
-            $order->plates()->attach($faker->randomElements($plates, random_int(1, 3)));
-        }
+        // Per ogni ordine, collega un numero casuale di piatti
+        $orders->each(function ($order) use ($plates, $faker) {
+            // Scegli un numero casuale di piatti da associare all'ordine (da 1 a 3)
+            $numberOfPlates = $faker->numberBetween(1, 3);
+
+            // Prendi un subset casuale di piatti
+            $selectedPlates = $plates->random($numberOfPlates);
+
+            // Collega gli ordini ai piatti selezionati
+            $selectedPlates->each(function ($plate) use ($order, $faker) {
+                // Aggiungi l'associazione nella tabella pivot (order_plate)
+                DB::table('order_plate')->insert([
+                    'order_id' => $order->id,
+                    'plate_id' => $plate->id,
+                    'quantity' => $faker->numberBetween(1, 5), // Quantità casuale da 1 a 5
+                    // Eventuali altri campi della tabella pivot
+                ]);
+            });
+        });
     }
 }

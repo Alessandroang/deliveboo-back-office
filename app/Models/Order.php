@@ -11,6 +11,7 @@ class Order extends Model
 
     public function plates()
     {
-        return $this->belongsToMany(Plate::class);
+        return $this->belongsToMany(Plate::class)->withPivot('quantity');
+        ;
     }
 }
