@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            <div class="my-3 text-danger">* Questi campi sono obbligatori</div>
+            <div class="my-3 text-danger required-fields d-inline p-2">* Questi campi sono obbligatori</div>
 
             <form action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

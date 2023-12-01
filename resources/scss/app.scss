@@ -69,3 +69,8 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.required-fields {
+    background-color: whitesmoke;
+    border-radius: 12px;
+}

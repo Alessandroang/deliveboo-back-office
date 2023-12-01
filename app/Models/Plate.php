@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Plate extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'ingredients', 'description', 'image', 'price'];
+    protected $fillable = ['name', 'ingredients', 'description', 'visibility', 'image', 'price'];
 
     public function restaurant()
     {
