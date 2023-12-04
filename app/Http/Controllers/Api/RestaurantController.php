@@ -17,8 +17,8 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::select("id", "user_id", "name", "address", "description", "phone", "image")
 
             ->orderByDesc('id')
-            ->with(['types', 'plates:id, restaurant_id,name,image,ingredients,description,price'])->get();
-        // ->paginate(6);
+            ->with(['types', 'plates:id, restaurant_id,name,image,ingredients,description,price'])->get()
+            ->paginate(4);
 
 
         foreach ($restaurants as $restaurant) {
@@ -88,4 +88,3 @@ class RestaurantController extends Controller
 
 
 }
-
