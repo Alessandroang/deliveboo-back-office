@@ -31,7 +31,7 @@
                             <div class="col-12 my-2">
                                 <label for="name" class="form-label fw-bold">Nome piatto*:</label>
                                 <input type="text" id="name" name="name"
-                                    class="form-control  @error('name') is-invalid @enderror" placeholder="Plate name"
+                                    class="form-control  @error('name') is-invalid @enderror" placeholder="Nome del piatto"
                                     value="{{ old('name') }}">
                                 {{-- @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -57,7 +57,7 @@
                                 <label for="price" class="form-label fw-bold">Prezzo*:</label>
                                 <input type="number" min="0" max="100" step="0.01" id="price"
                                     name="price" class="form-control @error('price') is-invalid @enderror"
-                                    placeholder="Plate price" value="{{ old('price') }}">
+                                    placeholder="Prezzo del piatto" value="{{ old('price') }}">
                                 {{-- @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}
@@ -84,7 +84,7 @@
                                 <label for="ingredients" class="form-label fw-bold">Ingredienti*:</label>
                                 <input type="textarea" id="ingredients" name="ingredients"
                                     class="form-control @error('ingredients') is-invalid @enderror"
-                                    placeholder="Plate ingredients" value="{{ old('ingredients') }}">
+                                    placeholder="Ingredienti del piatto" value="{{ old('ingredients') }}">
                                 {{-- @error('ingredients')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}

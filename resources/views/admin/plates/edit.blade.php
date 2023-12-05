@@ -32,7 +32,7 @@
                             <div class="col-12 my-2">
                                 <label for="name" class="form-label fw-bold">Nome piatto*:</label>
                                 <input type="text" id="name" name="name"
-                                    class="form-control  @error('name') is-invalid @enderror" placeholder="Plate name"
+                                    class="form-control  @error('name') is-invalid @enderror" placeholder="Nome del piatto"
                                     value="{{ old('name') ?? $plate->name }}">
                                 {{-- @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -45,12 +45,14 @@
                                     <input type="file" name="image" id="image"
                                         class="form-control @error('image') is-invalid @enderror"
                                         value="{{ old('image') }}">
-                                    <span id="updateMessage" class="text-danger d-none">L'immagine è stata aggiornata. Si
-                                        prega di reinserirne una.</span>
+
                                     {{-- @error('image')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror --}}
                                 </div>
+                                <div class="my-5 text-danger required-fields d-inline p-2 w-50">L'immagine è stata
+                                    aggiornata. Si
+                                    prega di reinserirne una.</div>
                                 <div class="col-4 mt-2">
                                     <img src="{{ $plate->image ? asset('storage/' . $plate->image) : 'https://placehold.co/400' }}"
                                         class="img-fluid" id="image_preview">
@@ -61,7 +63,7 @@
                                 <label for="price" class="form-label fw-bold">Prezzo*:</label>
                                 <input type="number" min="0" max="100" step="0.01" id="price"
                                     name="price" class="form-control @error('price') is-invalid @enderror"
-                                    placeholder="Plate price" value="{{ old('price') ?? $plate->price }}">
+                                    placeholder="Prezzo el piatto" value="{{ old('price') ?? $plate->price }}">
                                 {{-- @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}
@@ -88,15 +90,15 @@
                                 <label for="ingredients" class="form-label fw-bold">Ingredienti*:</label>
                                 <input type="textarea" id="ingredients" name="ingredients"
                                     class="form-control @error('ingredients') is-invalid @enderror"
-                                    placeholder="Plate ingredients" value="{{ old('ingredients') ?? $plate->ingredients }}">
+                                    placeholder="Ingredienti del piatto"
+                                    value="{{ old('ingredients') ?? $plate->ingredients }}">
                                 {{-- @error('ingredients')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}
                             </div>
                             <div class="col-12">
                                 <label for="description" class="form-label fw-bold">Descrizione</label>
-                                <textarea class="form-control" id="description" name="description" rows="2">
-                                    {{ old('description') ?? $plate->description }}
+                                <textarea class="form-control" id="description" name="description" rows="2">{{ old('description') ?? $plate->description }}
                                 </textarea>
                                 {{-- @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
