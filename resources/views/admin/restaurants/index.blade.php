@@ -3,41 +3,43 @@
 @section('content')
     <div class="restaurant_container">
         <div class="container">
-            <div class=" mt-3 row justify-content-center g-2">
-                @if ($restaurant)
-                    <h1>Dettaglio Ristorante</h1>
-                    <div class="food__hero col-6 col-lg-4">
-                        <img src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image" class="food__image">
-                    </div>
-                    <figure class="food col-6">
-                        <div class="restaurant__content">
-                            <div class="food__title">
-                                <h1 class="food__heading">{{ $restaurant->name }} 🏡</h1>
+            <div class="row gap-3">
+                <div class="title_container">
+                    <h2 class="restaurant_title">Dettaglio Ristorante :</h2>
+                    <span class="specifications">Qui potrai visualizzare i dati del tuo ristorante.</span>
+                </div>
 
-                                <div>
-                                    @if ($restaurant->types && count($restaurant->types) > 0)
-                                        @foreach ($restaurant->types as $type)
-                                            <span class="tag restaurant__tag">{{ $type->name }}</span>
-                                        @endforeach
-                                    @else
-                                        <span class="tag restaurant__tag">Nessuna tipologia disponibile</span>
-                                    @endif
-                                </div>
+                <div class="restaurant_image">
+                    <img src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image">
+                    <span class="specifications">(immagine)</span>
+                </div>
 
-                                {{-- <div class="tag food__tag--2">#italian</div> --}}
-                            </div>
-                            <p class="food__description">
-                                {{ $restaurant->description }}
-                            </p>
-                        </div>
-                        <div class="restaurant__route"><a class="text_route" href="{{ route('admin.plates.index') }}">Vedi
-                                Menù</a></div>
-                    </figure>
-                @else
-                    <div class="col-md-12">
-                        <p>Errore: il ristorante non è stato trovato.</p>
-                    </div>
-                @endif
+                <div class="name_container">
+                    <h1 class="restaurant_name">{{ $restaurant->name }}</h1>
+                    <span class="specifications">(Nome attività)</span>
+                </div>
+
+                <div class="type_container">
+                    @if ($restaurant->types && count($restaurant->types) > 0)
+                        @foreach ($restaurant->types as $type)
+                            <span class="restaurant_type">{{ $type->name }}</span>
+                        @endforeach
+                    @else
+                        <span class="restaurant_type">Nessuna tipologia disponibile</span>
+                    @endif
+                    <span class="specifications">(tipologia/e alimentare)</span>
+                </div>
+
+                <div class="description_container">
+                    <p class="restaurant_description">
+                        {{ $restaurant->description }}
+                    </p>
+                    <span class="specifications">(descrizione)</span>
+                </div>
+
+                <div class="restaurant_route_container">
+                    <a class="restaurant_route" href="{{ route('admin.plates.index') }}">Vedi/Crea Menù</a>
+                </div>
             </div>
         </div>
     </div>
