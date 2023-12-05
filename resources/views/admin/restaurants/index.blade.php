@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="restaurant_image">
-                    <img src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image">
+                    <img class="restaurant_image" src={{ asset('/storage/' . $restaurant->image) }} alt="restaurant-image">
                     <span class="specifications">(immagine)</span>
                 </div>
 
