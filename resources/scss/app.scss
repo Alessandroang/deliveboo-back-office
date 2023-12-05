@@ -71,6 +71,7 @@ input:checked + .slider:before {
 }
 
 .required-fields {
-    background-color: whitesmoke;
-    border-radius: 12px;
+    font-weight:900;
+    display: inline-block;
+    color: #222;
 }
