@@ -76,7 +76,7 @@ Mid: #5aaa9d
 .food {
   max-width: 800px;
   min-width: 500px;
-  border-radius: 4px;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
   
@@ -116,7 +116,7 @@ figure:hover{
 }
 .food__routes {
   flex: 0 0 50px;
-  background: linear-gradient(to bottom, #141414, #8e9090);
+  background: linear-gradient(to bottom, #393939, #8e9090);
   writing-mode: vertical-rl;
   color: white;
   font-size: 18px;
