@@ -7,9 +7,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {{-- favicon --}}
+    <link rel="icon" href="/img/favicon-bo.png" type="image/png" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
