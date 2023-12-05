@@ -47,7 +47,8 @@ Mid: #5aaa9d
   width: 25%;
   text-align: center;
 }
-.restaurant_route_container:hover{
+.restaurant_route_container:hover,
+.home_li:hover{
   transform: scale(1.1);
   transition: 0.3s linear;
 }
@@ -102,6 +103,7 @@ Mid: #5aaa9d
 }
 figure:hover{
   transform: scale(1.02);
+  transition: 0.2s linear;
 }
 .legenda_content {
   color: #ebe9e9;
@@ -113,6 +115,7 @@ figure:hover{
 }
 .legenda_content:hover{
   transform: scale(1.05);
+  transition: 0.2s linear;
 }
 .food__routes {
   flex: 0 0 50px;
