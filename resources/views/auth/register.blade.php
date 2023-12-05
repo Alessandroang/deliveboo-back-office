@@ -6,6 +6,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Registrati') }}</div>
+                    <div id="name-error" class="text-danger"></div>
+                    <div id="lastname-error" class="text-danger"></div>
+                    <div id="email-error" class="text-danger"></div>
+                    <div id="vat-error" class="text-danger"></div>
+                    <div id="password-error" class="text-danger"></div>
+                    <div id="password-confirm-error" class="text-danger"></div>
                     <div class="m-3 text-danger">* Questi campi sono obbligatori</div>
                     <div class="card-body">
 
@@ -162,16 +168,18 @@
         const submitForm = () => {
             // Aggiungi qui la tua logica di validazione del form
             if (password.value !== passwordConfirm.value) {
-                alert('Le password non corrispondono');
+                document.getElementById('password-confirm-error').innerText = 'Le password non corrispondono';
                 return;
+            } else {
+                document.getElementById('password-confirm-error').innerText = '';
             }
 
-            // Utilizza la tua funzione di validazione personalizzata per la partita IVA
             if (!isValidVAT(vat.value)) {
-                alert('La partita IVA non è valida'); // Personalizza il messaggio di errore
+                document.getElementById('vat-error').innerText = 'La partita IVA non è valida';
                 return;
+            } else {
+                document.getElementById('vat-error').innerText = '';
             }
-
             // Se il form è valido, invia la richiesta al backend
             form.submit();
         };
