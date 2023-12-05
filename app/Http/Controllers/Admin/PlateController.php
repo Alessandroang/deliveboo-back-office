@@ -52,7 +52,7 @@ class PlateController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'description' => 'nullable|string',
-            'image' => 'required|image',
+            'image' => 'nullable|image',
             'price' => 'required|numeric|decimal:0,2',
             'ingredients' => 'required|string',
             'visibility' => 'nullable|boolean',
@@ -71,7 +71,7 @@ class PlateController extends Controller
 
         // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)
         if ($request->hasFile('image')) {
-            $imagePath = Storage::put('upload/plates/images', $request->file('image'));
+            $imagePath = Storage::put('uploads/images/plates', $data['image']);
             // # NEL DB METTIAMO IL PATH
             $plate->image = $imagePath;
         }
@@ -118,10 +118,10 @@ class PlateController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'description' => 'nullable|string',
-            'image' => 'required|image',
+            'image' => 'nullable|image',
             'price' => 'required|numeric|decimal:0,2',
             'ingredients' => 'required|string',
-            'visibility' => 'nullable|boolean',
+            'visibility' => 'boolean',
             // 'type_id' => 'nullable|exists:types,id',
             // 'types' => ['nullable', 'array', 'exists:types,id'],
             // ... altre regole di validazione
@@ -130,14 +130,24 @@ class PlateController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
+
             // Carica la nuova immagine e aggiorna il campo 'image'
-            $imagePath = $request->file('image')->store('plates/images', 'public');
+            if ($plate->image) {
+                Storage::delete($plate->image);
+            }
+            //  $image_path = Storage::put('uploads/images/plates', $data['image']);
+            //  $plate->image = $image_path;
+
+            $imagePath = $request->file('image')->store('uploads/images/plates', 'public');
             $data['image'] = $imagePath;
         }
 
         $plate->update($data);
+        // $plate->save();
+
         return redirect()->route('admin.plates.show', $plate);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -149,7 +159,7 @@ class PlateController extends Controller
     public function visibility(Plate $plate, Request $request)
     {
         $data = $request->all();
-        $plate->visibility = !Arr::exists($data, 'visibility') ? 1 : null;
+        $plate->visibility = !Arr::exists($data, 'visibility') ? 1 : 0;
         $plate->save();
 
         $user = Auth::user();

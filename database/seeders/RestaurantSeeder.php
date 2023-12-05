@@ -25,7 +25,7 @@ class RestaurantSeeder extends Seeder
         $restaurant->name = "Il ristorante piu bello d'Italia";
         $restaurant->address = 'Via del mare 103';
 
-        $restaurant->image = 'ristorante.webp';
+        $restaurant->image = 'uploads/images/restaurants/ristorante.webp';
         $restaurant->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore veritatis odio sint accusamus velit impedit quaerat unde cumque a';
         $restaurant->phone = '388888888';
         // $restaurant->type_id = random_int(1, 8);

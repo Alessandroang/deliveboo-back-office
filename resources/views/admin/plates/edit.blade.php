@@ -48,8 +48,7 @@
                                     @enderror --}}
                         </div>
                         <div class="col-4 mt-2">
-                            <img src="{{ $plate->image ? asset('storage/' . $plate->image) : 'https://placehold.co/400' }}"
-                                class="img-fluid" id="image_preview">
+                            <img src="{{ asset('/storage/' . $plate->image) }}" class="img-fluid" id="image_preview">
                         </div>
                         <div class="mt-2 required-fields">L'immagine è stata
                             aggiornata. Si
@@ -113,20 +112,30 @@
     <script type="text/javascript">
         const inputFileElement = document.getElementById('image');
         const imagePreview = document.getElementById('image_preview');
-        const updateMessage = document.getElementById('updateMessage');
+        //const updateMessage = document.getElementById('updateMessage');
 
-        function updateImagePreview() {
-            if (inputFileElement.value) {
-                const [file] = inputFileElement.files;
-                imagePreview.src = URL.createObjectURL(file);
-                imagePreview.classList.add('d-block'); // Mostra l'anteprima
-                updateMessage.classList.add('d-none'); // Mostra il messaggio di avviso
-            } else {
-                updateMessage.classList.remove('d-none'); // Nascondi il messaggio se l'input è vuoto
-            }
+        if (!imagePreview.getAttribute('src') || imagePreview.getAttribute('src') ==
+            "http://localhost:8000/storage") {
+            imagePreview.src = "https://placehold.co/400";
         }
 
-        inputFileElement.addEventListener('change', updateImagePreview);
-        window.addEventListener('DOMContentLoaded', updateImagePreview);
+        /*  function updateImagePreview() {
+                    if (inputFileElement.value) {
+                        const [file] = inputFileElement.files;
+                        imagePreview.src = URL.createObjectURL(file);
+                        imagePreview.classList.add('d-block'); // Mostra l'anteprima
+                        updateMessage.classList.add('d-none'); // Mostra il messaggio di avviso
+                    } else {
+                        updateMessage.classList.remove('d-none'); // Nascondi il messaggio se l'input è vuoto
+                    }
+                }
+
+                inputFileElement.addEventListener('change', updateImagePreview);
+                window.addEventListener('DOMContentLoaded', updateImagePreview);
+        */
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            imagePreview.src = URL.createObjectURL(file);
+        })
     </script>
 @endsection

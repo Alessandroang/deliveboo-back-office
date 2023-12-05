@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('name', 50);
             $table->text('ingredients');
             $table->text('description')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->decimal('price');
             $table->tinyInteger('visibility')->default(1);
             $table->timestamps();

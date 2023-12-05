@@ -115,7 +115,7 @@
 
         inputFileElement.addEventListener('change', function() {
             const [file] = this.files;
-            imagePreview.src = URL.createObjectURL(file)
+            imagePreview.src = URL.createObjectURL(file);
         })
     </script>
 @endsection

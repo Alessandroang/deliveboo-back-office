@@ -59,7 +59,7 @@ class RestaurantController extends Controller
 
         // # METTIAMO L'IMMAGINE IN UNA CARTELLA TRAMITE LO STORAGE E QUELLO CHE CI ARRIVA(put)
         if ($request->hasFile('image')) {
-            $imagePath = Storage::put('upload/restaurants/images', $request->file('image'));
+            $imagePath = Storage::put('uploads/images/restaurants', $request->file('image'));
             // # NEL DB METTIAMO IL PATH
             $restaurant->image = $imagePath;
         }
