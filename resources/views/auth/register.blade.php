@@ -357,7 +357,6 @@
                 showError('La partita IVA non è valida');
                 return;
             }
- {{-- --}}
 {{-- // errorMessage.innerHTML = '';
             // Invia il form in modo asincrono utilizzando Fetch API
             // fetch(form.action, {
@@ -379,4 +378,4 @@
 
 //         document.getElementById('register-button').addEventListener('click', submitForm);
 //     </script>
-// @endsection --}} --}}
+// @endsection --}}
