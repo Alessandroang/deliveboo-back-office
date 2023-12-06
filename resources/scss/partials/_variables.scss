@@ -88,6 +88,11 @@ Mid: #5aaa9d
   display: flex;
   justify-content: center;
   align-items:center ;
+  img{
+    width: 300px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+  }
 }
 .food__image{
   max-width: 400px;
