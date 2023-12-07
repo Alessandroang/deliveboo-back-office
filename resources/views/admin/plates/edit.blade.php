@@ -39,7 +39,7 @@
 
                     <div class="row">
                         <div class="col-8">
-                            <label for="image" class="form-label fw-bold">URL dell'immagine*:</label>
+                            <label for="image" class="form-label fw-bold">URL dell'immagine:</label>
                             <input type="file" name="image" id="image"
                                 class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
 
@@ -50,10 +50,13 @@
                         <div class="col-4 mt-2">
                             <img src="{{ asset('/storage/' . $plate->image) }}" class="img-fluid" id="image_preview">
                         </div>
-                        <div class="mt-2 required-fields">L'immagine è stata
-                            aggiornata. Si
-                            prega di reinserirne una.(?)</div>
+                        <!--
+                            <div class="mt-2 required-fields">L'immagine è stata
+                                    aggiornata. Si
+                                    prega di reinserirne una.(?)</div>
+                         -->
                     </div>
+
 
                     <div class="col-12 my-2">
                         <label for="price" class="form-label fw-bold">Prezzo*:</label>

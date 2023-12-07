@@ -69,7 +69,7 @@
 
             {{-- DESCRIZIONE --}}
             <div class="mb-3">
-                <label for="description" class="form-label">Descrizione del ristorante:</label>
+                <label for="description" class="form-label">Descrizione del ristorante*:</label>
                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
             </div>
 

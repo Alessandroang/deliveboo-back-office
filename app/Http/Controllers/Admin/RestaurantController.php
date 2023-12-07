@@ -35,7 +35,7 @@ class RestaurantController extends Controller
             'address' => 'required|string',
             'types' => 'required|array',
             'image' => 'required|image',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'phone' => 'required|string|min:8|max:20',
         ]);
 

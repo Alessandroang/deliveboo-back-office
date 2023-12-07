@@ -39,7 +39,7 @@
 
                     <div class="row">
                         <div class="col-8">
-                            <label for="image" class="form-label fw-bold">URL dell'immagine*:</label>
+                            <label for="image" class="form-label fw-bold">URL dell'immagine:</label>
                             <input type="file" name="image" id="image"
                                 class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
                             @error('image')
