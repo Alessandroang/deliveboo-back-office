@@ -52,9 +52,9 @@
                 <div class="legenda_content">
                     <h5 class="text-center mb-3">Legenda : "🔎-🖊️-🗑️"</h5>
                     <div class="d-flex justify-content-around fw-bold">
-                        <span>🔎 = mostra i dettagli del piatto</span>
-                        <span>🖊️ = modifica i dettagli del piatto selezionato</span>
-                        <span>🗑️ = elimina il piatto selezionato</span>
+                        <span class="me-1">🔎 = mostra i dettagli del piatto</span>
+                        <span class="me-1">🖊️ = modifica i dettagli del piatto</span>
+                        <span>🗑️ = elimina il piatto</span>
                     </div>
                 </div>
             </div>

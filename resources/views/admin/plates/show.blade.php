@@ -5,10 +5,10 @@
         <div class="container">
             <div class=" mt-3 row justify-content-center g-2">
                 <h1>Dettaglio piatto :</h1>
-                <div class="food__hero col-6 col-lg-4">
+                <div class="food__hero col-md-4 col-12">
                     <img src={{ asset('/storage/' . $plate->image) }} alt="food" class="food__img img-fluid">
                 </div>
-                <figure class="food col-6">
+                <figure class="food col-md-6 col-12">
                     <div class="food__content">
                         <div class="food__title">
                             <h1 class="food__heading">{{ $plate->name }} 🍽️</h1>
