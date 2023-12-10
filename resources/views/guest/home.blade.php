@@ -3,7 +3,7 @@
 
 @section('content')
     <section class="container mt-5">
-        <h2 class="mb-4">Benvenuto! ad oggi ci ha scelti :</h2>
+        <h2 class="mb-4">Benvenuto! Ad oggi ci ha scelti :</h2>
         <ul>
             @foreach ($restaurants as $restaurant)
                 <li class="home_li">
