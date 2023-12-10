@@ -34,7 +34,7 @@
                                 {!! $plate->getAbstract() !!}
                             </p>
                             <div>
-                                <p class="food__detail"><span class="emoji">👨‍🍳</span>{{ $plate->ingredients }}</p>
+                                <p class="food__detail"> <span class="emoji">👨‍🍳</span>{{ $plate->ingredients }}</p>
                                 <p class="food__detail"><span class="emoji">💶</span>{{ $plate->price }} €</p>
                             </div>
                         </div>
@@ -75,8 +75,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
-                        Sei sicuro di voler eliminare <i>" {{ $plate->name }} "</i> con ID
-                        {{ $plate->id }}?
+                        Sei sicuro di voler eliminare <i>" {{ $plate->name }} "</i> ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

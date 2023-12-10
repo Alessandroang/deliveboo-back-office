@@ -88,7 +88,7 @@
                     @enderror --}}
                     </div>
                     <div class="col-12">
-                        <label for="description" class="form-label fw-bold">Descrizione</label>
+                        <label for="description" class="form-label fw-bold">Descrizione*:</label>
                         <textarea class="form-control" id="description" name="description" rows="2"></textarea>
                         {{-- @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>
