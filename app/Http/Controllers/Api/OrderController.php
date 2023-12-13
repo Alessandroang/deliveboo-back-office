@@ -24,12 +24,12 @@ class OrderController extends Controller
         ]);
 
         $order = Order::create([
-            'name' => $request->guest_name,
-            'lastname' => $request->guest_surname,
-            'address' => $request->guest_address,
-            'phone' => $request->guest_phone,
-            'email' => $request->guest_mail,
-            'total_orders' => $request->totalItem,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'total_orders' => $request->total_orders,
         ]);
 
         // !DA CAPIRE QUNADO ABBIAMO IL CART
