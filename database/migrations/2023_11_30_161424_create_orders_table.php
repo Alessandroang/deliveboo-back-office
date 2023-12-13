@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->string('email');
             $table->string('phone', 20);
             $table->string('address');
-            $table->boolean('success');
+            $table->boolean('success')->default(1);
             $table->dateTime('date');
             $table->timestamps();
         });

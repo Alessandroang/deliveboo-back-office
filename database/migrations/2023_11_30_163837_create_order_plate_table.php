@@ -14,14 +14,18 @@ return new class extends Migration {
     {
         Schema::create('order_plate', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('plate_id');
-            $table->integer('quantity');
-            $table->timestamps();
 
-            // Definizione delle chiavi esterne
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('plate_id')->references('id')->on('plates');
+            $table->foreignId('order_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId('plate_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->integer('quantity');
+
+            $table->timestamps();
         });
     }
 
