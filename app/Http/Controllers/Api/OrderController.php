@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Plate;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,6 +20,7 @@ class OrderController extends Controller
             'email' => 'nullable|email',
             'phone' => 'required|string',
             'total_orders' => 'required|numeric',
+            'cart' => 'required|array',
         ]);
 
         // Creazione di un nuovo ordine con i dati validati
@@ -32,6 +34,18 @@ class OrderController extends Controller
                 'total_orders' => $validatedData['total_orders'],
             ]
         );
+
+        // Itera sull'array 'cart' e inserisci i dati nella tabella ponte 'order_plate'
+        foreach ($validatedData['cart'] as $cartItem) {
+            $plateId = $cartItem['id']; // Supponendo che ci sia un campo 'plate_id' nell'elemento del carrello
+            $quantity = $cartItem['qty']; // Supponendo che ci sia un campo 'quantity' nell'elemento del carrello
+
+            // Trova il piatto dal carrello
+            $plate = Plate::find($plateId);
+
+            // Aggiungi il piatto all'ordine nella tabella ponte con la quantità
+            $order->plates()->attach($plateId, ['quantity' => $quantity]);
+        }
 
         // Restituzione della risposta in formato JSON
         return response()->json([

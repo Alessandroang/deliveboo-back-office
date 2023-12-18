@@ -16,7 +16,7 @@ class Order extends Model
         'email',
         'phone',
         'total_orders',
-        //'cart',
+        'cart',
     ];
 
     public function plates()
