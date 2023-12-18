@@ -9,6 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'lastname',
+        'address',
+        'phone',
+        'email',
+        'totalOrders',
+        'cart',
+    ];
+
     public function plates()
     {
         return $this->belongsToMany(Plate::class)->withTimestamps();

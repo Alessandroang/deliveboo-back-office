@@ -14,15 +14,15 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_id')->constrained();
+            // $table->foreignId('restaurant_id')->constrained();
             $table->decimal('total_orders');
             $table->string('name', 50);
             $table->string('lastname');
             $table->string('email');
             $table->string('phone', 20);
             $table->string('address');
-            $table->boolean('success')->default(1);
-            $table->dateTime('date');
+            //  $table->boolean('success')->default(1);
+            //  $table->dateTime('date');
             $table->timestamps();
         });
     }
@@ -34,11 +34,11 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['restaurant_id']);
-            $table->dropColumn('restaurant_id');
-        });
-
+        /*   Schema::table('orders', function (Blueprint $table) {
+               $table->dropForeign(['restaurant_id']);
+               $table->dropColumn('restaurant_id');
+           });
+        */
         Schema::dropIfExists('orders');
     }
 };
