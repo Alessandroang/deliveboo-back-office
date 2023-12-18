@@ -15,12 +15,12 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             // $table->foreignId('restaurant_id')->constrained();
-            $table->decimal('total_orders');
             $table->string('name', 50);
             $table->string('lastname');
+            $table->string('address');
             $table->string('email');
             $table->string('phone', 20);
-            $table->string('address');
+            $table->decimal('total_orders');
             //  $table->boolean('success')->default(1);
             //  $table->dateTime('date');
             $table->timestamps();

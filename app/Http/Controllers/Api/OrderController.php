@@ -8,35 +8,34 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    // Funzione che permette di ricevere i dati e salvarli nel database
-    public function GetOrder(Request $request)
+    public function store(Request $request)
     {
 
-        $request->validate([
+        // Validazione dei dati ricevuti
+        $validatedData = $request->validate([
             'name' => 'required|string',
             'lastname' => 'required|string',
             'address' => 'required|string',
-            'phone' => 'required|string',
             'email' => 'nullable|email',
+            'phone' => 'required|string',
             'total_orders' => 'required|numeric',
-            // !QUI CI VANNO I NOSTRI PIATTI
-            //'cart' => 'required|array'
         ]);
 
-        $order = Order::create([
-            'name' => $request->name,
-            'lastname' => $request->lastname,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'total_orders' => $request->total_orders,
-        ]);
+        // Creazione di un nuovo ordine con i dati validati
+        $order = Order::create(
+            [
+                'name' => $validatedData['name'],
+                'lastname' => $validatedData['lastname'],
+                'address' => $validatedData['address'],
+                'email' => $validatedData['email'],
+                'phone' => $validatedData['phone'],
+                'total_orders' => $validatedData['total_orders'],
+            ]
+        );
 
-        // !DA CAPIRE QUNADO ABBIAMO IL CART
-        // foreach ($request->cart as $item) {
-        //     $order->dishes()->attach($item['id'], ['quantity' => $item['qty']]);
-        // }
-
-        return response()->json(['message' => 'Ordine ricevuto con successo', 'order_id' => $order->id], 201);
+        // Restituzione della risposta in formato JSON
+        return response()->json([
+            'order' => $order
+        ], 201);
     }
 }

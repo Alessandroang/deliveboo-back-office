@@ -32,7 +32,7 @@ Route::apiResource("types", TypeController::class)->only(["index"]);
 
 // ORDER API
 
-Route::post('/orders', [OrderController::class, 'GetOrder']);
+Route::post('/orders', [OrderController::class, 'store']);
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //  return $request->user();
