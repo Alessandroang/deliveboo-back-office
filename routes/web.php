@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
-use App\Http\Controllers\Guest\OrderController;
+use App\Http\Controllers\Admin\OrderController;
 
 use App\Http\Controllers\Admin\PlateController;
 use App\Http\Controllers\Admin\RestaurantController;
@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])
         Route::post('/restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
         Route::resource('plates', PlateController::class);
         Route::patch('/plates/{plate}/visibility', [PlateController::class, 'visibility'])->name('plates.visibility');
+        Route::get('/orders', [OrderController::class, 'showOrders'])->name('orders.index');
     });
 
 require __DIR__ . '/auth.php';

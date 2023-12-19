@@ -4,6 +4,9 @@
     <div class="restaurant_container">
         <div class="container">
             <div class="row gap-3">
+                <div class="restaurant_route_container">
+                    <a class="btn btn-primary" href="{{ route('admin.orders.index') }}">Vedi Ordini</a>
+                </div>
                 <div class="title_container">
                     <h2 class="restaurant_title">Dettaglio Ristorante :</h2>
                     <span class="specifications">Qui potrai visualizzare i dati del tuo ristorante.</span>
