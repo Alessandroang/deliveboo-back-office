@@ -16,11 +16,10 @@ class OrderController extends Controller
         // Ora puoi accedere ai restaurant_id dei piatti di ciascun ordine
         foreach ($orders as $order) {
             foreach ($order->plates as $plate) {
-                $restaurantId = $plate->pivot->restaurant_id;
+                // $restaurantId = $plate->pivot->restaurant_id;
                 // Usa $restaurantId come necessario
             }
         }
-
         // Passa gli ordini alla vista e restituisci la vista
         return view('admin.orders.index', compact('orders'));
     }
