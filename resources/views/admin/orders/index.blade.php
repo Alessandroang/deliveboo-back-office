@@ -52,10 +52,12 @@
                 </div>
             @endif
         @empty
-            {{-- Aggiunto controllo se non ci sono ordini --}}
-            @if (!$hasOrders)
-                <p>Nessun ordine disponibile per il tuo ristorante.</p>
-            @endif
         @endforelse
+
+        <!-- Aggiunto controllo se non ci sono ordini  -->
+        @if (!$hasOrders)
+            <p>Nessun ordine disponibile per il tuo ristorante.</p>
+        @endif
+
     </div>
 @endsection
