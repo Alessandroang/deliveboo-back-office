@@ -15,7 +15,7 @@ class OrderController extends Controller
         $userRestaurantId = Auth::user()->restaurant->id;
 
         // Recupera tutti gli ordini dal database con i piatti e i rispettivi restaurant_id
-        $orders = Order::with('plates')->get();
+        $orders = Order::with('plates')->orderByDesc('created_at')->get();
 
         // Passa gli ordini e l'ID del ristorante alla vista
         return view('admin.orders.index', compact('orders', 'userRestaurantId'));

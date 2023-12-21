@@ -8,7 +8,7 @@
             $hasOrders = false;
         @endphp
 
-        @forelse ($orders as $order)
+        @foreach ($orders as $order)
             @php
                 $firstPlate = $order->plates->first();
                 $restaurantId = $firstPlate ? $firstPlate->restaurant->id : null;
@@ -31,6 +31,8 @@
                             <strong>Email:</strong> {{ $order->email }} <br>
                             <strong>Phone:</strong> {{ $order->phone }} <br>
                             <strong>Totale Ordine:</strong> {{ $order->total_orders }} <br>
+                            <strong>Data Ordine:</strong> {{ $order->created_at }} <br>
+
 
                         <ul class="list-group list-group-flush">
                             @foreach ($order->plates as $plate)
@@ -40,9 +42,6 @@
                                 <li class="list-group-item">
                                     <strong>Quantità:</strong> {{ $plate->pivot->quantity }}
                                 </li>
-                                <li class="list-group-item">
-                                    <strong>Data Ordinazione:</strong> {{ $plate->pivot->created_at }} <br>
-                                </li>
                             @endforeach
                         </ul>
 
@@ -51,8 +50,7 @@
                     </div>
                 </div>
             @endif
-        @empty
-        @endforelse
+        @endforeach
 
         <!-- Aggiunto controllo se non ci sono ordini  -->
         @if (!$hasOrders)
