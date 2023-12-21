@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\PlateController;
 use App\Http\Controllers\Api\TypeController;
+use App\Http\Controllers\Api\OrderController;
 
 
 
@@ -28,6 +29,10 @@ Route::post('/get-restaurants-by-filters', [RestaurantController::class, 'restau
 //  TYPE API
 
 Route::apiResource("types", TypeController::class)->only(["index"]);
+
+// ORDER API
+
+Route::post('/orders', [OrderController::class, 'store']);
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //  return $request->user();

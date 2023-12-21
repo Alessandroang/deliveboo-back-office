@@ -9,19 +9,23 @@ use Illuminate\Support\Facades\Storage;
 class Plate extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'ingredients', 'description', 'visibility', 'image', 'price'];
+    protected $fillable = ['restaurant_id', 'name', 'ingredients', 'description', 'visibility', 'image', 'price'];
 
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function orders()
+    /* public function orders()
+     {
+         return $this->belongsToMany(Order::class)->withPivot('quantity');
+         ;
+     }
+     */
+    public function order()
     {
-        return $this->belongsToMany(Order::class)->withPivot('quantity');
-        ;
+        return $this->belongsToMany(Order::class);
     }
-
 
     public function getAbstract($chars = 150)
     {

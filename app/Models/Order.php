@@ -9,9 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'lastname',
+        'address',
+        'email',
+        'phone',
+        'total_orders',
+        'cart',
+    ];
+
     public function plates()
     {
-        return $this->belongsToMany(Plate::class)->withPivot('quantity');
-        ;
+        return $this->belongsToMany(Plate::class)->withPivot('quantity')->withTimestamps();
     }
 }
