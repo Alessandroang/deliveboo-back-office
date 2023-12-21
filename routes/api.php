@@ -34,6 +34,11 @@ Route::apiResource("types", TypeController::class)->only(["index"]);
 
 Route::post('/orders', [OrderController::class, 'store']);
 
+// PAYMENT API
+
+Route::get('/generate', [OrderController::class, 'Generate']);
+Route::post('/payment', [OrderController::class, 'MakePayment']);
+
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //  return $request->user();
 //});
