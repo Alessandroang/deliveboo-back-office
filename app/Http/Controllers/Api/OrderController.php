@@ -12,7 +12,6 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
-
         // Validazione dei dati ricevuti
         $validatedData = $request->validate([
             'name' => 'required|string',
@@ -25,16 +24,14 @@ class OrderController extends Controller
         ]);
 
         // Creazione di un nuovo ordine con i dati validati
-        $order = Order::create(
-            [
-                'name' => $validatedData['name'],
-                'lastname' => $validatedData['lastname'],
-                'address' => $validatedData['address'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'total_orders' => $validatedData['total_orders'],
-            ]
-        );
+        $order = Order::create([
+            'name' => $validatedData['name'],
+            'lastname' => $validatedData['lastname'],
+            'address' => $validatedData['address'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
+            'total_orders' => $validatedData['total_orders'],
+        ]);
 
         // Itera sull'array 'cart' e inserisci i dati nella tabella ponte 'order_plate'
         foreach ($validatedData['cart'] as $cartItem) {
@@ -49,9 +46,12 @@ class OrderController extends Controller
         }
 
         // Restituzione della risposta in formato JSON
-        return response()->json([
-            'order' => $order
-        ], 201);
+        return response()->json(
+            [
+                'order' => $order,
+            ],
+            201,
+        );
     }
 
     public function Generate(Request $request, Gateway $gateway, Order $order)
@@ -59,25 +59,23 @@ class OrderController extends Controller
         $token = $gateway->clientToken()->generate();
         $data = [
             'success' => true,
-            'token' => $token
+            'token' => $token,
         ];
         return response()->json($data, 200);
     }
     public function MakePayment(Request $request, Gateway $gateway, Order $order)
     {
-
-
         $result = $gateway->transaction()->sale([
             'amount' => $request->amount,
             'paymentMethodNonce' => $request->token,
             'options' => [
-                'submitForSettlement' => true
-            ]
+                'submitForSettlement' => true,
+            ],
         ]);
         if ($result->success) {
             $data = [
                 'message' => 'Transazione eseguita correttamente',
-                'success' => true
+                'success' => true,
             ];
             return response()->json($data, 200);
         } else {
