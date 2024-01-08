@@ -7,8 +7,6 @@ use App\Http\Controllers\Api\PlateController;
 use App\Http\Controllers\Api\TypeController;
 use App\Http\Controllers\Api\OrderController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,17 +20,18 @@ use App\Http\Controllers\Api\OrderController;
 
 //  RESTAURANT API
 
-Route::apiResource("/restaurants", RestaurantController::class)->only(["index", "show"]);
+Route::apiResource('/restaurants', RestaurantController::class)->only(['index', 'show']);
 Route::get('/plates-by-restaurant/{restaurant_id}', [PlateController::class, 'platesByRestaurant']);
 Route::post('/get-restaurants-by-filters', [RestaurantController::class, 'restaurantsByFilters']);
 
 //  TYPE API
 
-Route::apiResource("types", TypeController::class)->only(["index"]);
+Route::apiResource('types', TypeController::class)->only(['index']);
 
 // ORDER API
 
 Route::post('/orders', [OrderController::class, 'store']);
+Route::get('/order/statistics', [OrderController::class, 'orderStatistics'])->name('order.statistics');
 
 // PAYMENT API
 
