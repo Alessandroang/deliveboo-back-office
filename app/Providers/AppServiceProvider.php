@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+
 use Braintree\Gateway;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
             return new Gateway([
                 'environment' => 'sandbox',
                 'merchantId' => 'v9v2hw246r5n6kx9',
-                'publicKey' => 'sy8jpy7qbgrh2csk',
-                'privateKey' => 'e43fadabae2512b82c0f99164fbc9b55',
+                'publicKey' => '542x2pcy98hjthbf',
+                'privateKey' => '3b23d6c37535bf727dc05b4d8766288e',
             ]);
         });
     }
