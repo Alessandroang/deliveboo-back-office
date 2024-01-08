@@ -5,7 +5,20 @@
         <h1>Statistiche degli Ordini</h1>
 
         @if (!empty($statistics))
-            <canvas id="myChart" width="400" height="200"></canvas>
+            <div class="chart-container">
+                <!-- Grafico per i mesi -->
+                <div class="chart-container">
+                    <h2>Statistica per Mesi</h2>
+                    <canvas id="monthlyChart" width="400" height="200"></canvas>
+                </div>
+
+                <!-- Grafico per gli anni -->
+                <div class="chart-container">
+                    <h2>Statistica per Anni</h2>
+                    <canvas id="yearlyChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -39,38 +52,86 @@
             var statistics = {!! json_encode($statistics) !!};
 
             // Estrai i totali per ogni mese
-            var totalOrders = statistics.map(item => item.total_orders);
-            var totalQuantity = statistics.map(item => item.total_quantity);
-            var totalSales = statistics.map(item => item.total_sales);
+            var monthlyData = {
+                labels: statistics.map(item => item.month),
+                datasets: [{
+                        label: 'Ordini Totali',
+                        data: statistics.map(item => item.total_orders),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Quantità Totali',
+                        data: statistics.map(item => item.total_quantity),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Vendite Totali',
+                        data: statistics.map(item => item.total_sales),
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
 
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
+            var yearlyData = {
+                labels: [...new Set(statistics.map(item => item.year))],
+                datasets: [{
+                        label: 'Ordini Totali',
+                        data: statistics.reduce((acc, item) => {
+                            acc[item.year] = (acc[item.year] || 0) + item.total_orders;
+                            return acc;
+                        }, {}),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Quantità Totali',
+                        data: statistics.reduce((acc, item) => {
+                            acc[item.year] = (acc[item.year] || 0) + item.total_quantity;
+                            return acc;
+                        }, {}),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Vendite Totali',
+                        data: statistics.reduce((acc, item) => {
+                            acc[item.year] = (acc[item.year] || 0) + item.total_sales;
+                            return acc;
+                        }, {}),
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            // Creare il grafico mensile
+            var monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+            var monthlyChart = new Chart(monthlyCtx, {
                 type: 'bar',
-                data: {
-                    labels: statistics.map(item => item.month), // Etichette mesi
-                    datasets: [{
-                            label: 'Ordini Totali',
-                            data: totalOrders,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Quantità Totali',
-                            data: totalQuantity,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Vendite Totali',
-                            data: totalSales,
-                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                            borderColor: 'rgba(255, 206, 86, 1)',
-                            borderWidth: 1
+                data: monthlyData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    ]
-                },
+                    }
+                }
+            });
+
+            // Creare il grafico annuale
+            var yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
+            var yearlyChart = new Chart(yearlyCtx, {
+                type: 'bar',
+                data: yearlyData,
                 options: {
                     scales: {
                         y: {
@@ -81,6 +142,70 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    var statistics = {!! json_encode($statistics) !!};
 
+                    // Estrai i totali per ogni mese
+                    var monthlyData = {
+                        labels: statistics.map(item => item.month),
+                        datasets: [{
+                                label: 'Ordini Totali',
+                                data: statistics.map(item => item.total_orders),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Quantità Totali',
+                                data: statistics.map(item => item.total_quantity),
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Vendite Totali',
+                                data: statistics.map(item => item.total_sales),
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    };
 
+                    var yearlyData = {
+                        labels: [...new Set(statistics.map(item => item.year))],
+                        datasets: [{
+                                label: 'Ordini Totali',
+                                data: statistics.reduce((acc, item) => {
+                                    acc[item.year] = (acc[item.year] || 0) + item.total_orders;
+                                    return acc;
+                                }, {}),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Quantità Totali',
+                                data: statistics.reduce((acc, item) => {
+                                    acc[item.year] = (acc[item.year] || 0) + item.total_quantity;
+                                    return acc;
+                                }, {}),
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Vendite Totali',
+                                data: statistics.reduce((acc, item) => {
+                                    acc[item.year] = (acc[item.year] || 0) + item.total_sales;
+                                    return acc;
+                                }, {}),
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    };
+    </script>
 @endsection
