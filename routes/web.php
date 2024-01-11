@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('plates', PlateController::class);
         Route::patch('/plates/{plate}/visibility', [PlateController::class, 'visibility'])->name('plates.visibility');
         Route::get('/orders', [OrderController::class, 'showOrders'])->name('orders.index');
+        Route::get('/order/statistics', [OrderController::class, 'orderStatistics'])->name('order.statistics');
     });
 
 require __DIR__ . '/auth.php';

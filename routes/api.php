@@ -31,7 +31,6 @@ Route::apiResource('types', TypeController::class)->only(['index']);
 // ORDER API
 
 Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/order/statistics', [OrderController::class, 'orderStatistics'])->name('order.statistics');
 
 // PAYMENT API
 
