@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Elenco degli Ordini</h1>
-
+        <!-- Aggiunto link alle statistiche degli ordini -->
+        <a href="{{ route('admin.order.statistics') }}">Visualizza Statistiche degli Ordini</a>
         @php
             $hasOrders = false;
         @endphp
